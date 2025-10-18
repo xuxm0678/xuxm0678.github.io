@@ -22,7 +22,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  site: 'https://xuxm0678.github.io/xiaomengxu.github.io/',
+  site: 'https://xuxm0678.github.io',
   base: '/xiaomengxu.github.io/',
   outDir: './dist',
   output: 'static',
@@ -88,6 +88,7 @@ export default defineConfig({
   },
 
   vite: {
+     base: '/xiaomengxu.github.io/',
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),
