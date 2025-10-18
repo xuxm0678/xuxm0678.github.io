@@ -44,14 +44,13 @@ const metadata = {
   <Hero
     id="hero"
     title="Xiaomeng Xu"
-    tagline="Data Scientist & Biostatistician"
+    tagline="AI & Health Data Scientist"
     actions={[{ variant: 'primary', text: 'View Projects', href: '#projects' },
-{variant: 'secondary', text: 'Contact Me', href: '#consulting' }]}
+{variant: 'secondary', text: 'AI & Statistical Consulting', href: '#consulting' }]}
   >
     <Fragment slot="subtitle">
-      I’m passionate about applying <strong>AI and statistical modeling</strong> to improve healthcare and beyond. <br />
-    With experience in machine learning, predictive analytics, and data visualization, I bridge data and human insight to create real-world impact.
-    </Fragment>
+      I’m passionate about exploring the potential of AI to make everyday life smarter, healthier, and more human-centered.  
+Through data science, statistical modeling, and creativity, I aim to turn complex data into meaningful change for people and communities.    </Fragment>
   </Hero>
 
   <!-- Content Widget **************** -->
@@ -61,49 +60,42 @@ const metadata = {
     columns={3}
     items={[
       {
-        icon: 'tabler:brand-dribbble',
+        icon: 'tabler:mail',
         callToAction: {
           target: '_blank',
-          text: 'Dribbble',
-          href: '#',
+          text: 'Email',
+          href: 'xuxm0678@gmail.com',
         },
       },
       {
-        icon: 'tabler:brand-behance',
+        icon: 'tabler:link',
         callToAction: {
           target: '_blank',
-          text: 'Behance',
-          href: '#',
-        },
-      },
-      {
-        icon: 'tabler:brand-pinterest',
-        callToAction: {
-          target: '_blank',
-          text: 'Pinterest',
-          href: '#',
+          text: 'Linkedin',
+          href: 'https://www.linkedin.com/in/xiaomeng-xu-563423257/',
         },
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Colorful Image',
+      src: '~/assets/images/about.jpg',
+      alt: 'Xiaomeng Xu portrait',
+      width: 800,
+      height: 600,
       loading: 'eager',
     }}
   >
     <Fragment slot="content">
       <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">About me</h2>
       <p>
-        Welcome to my creative journey. My work is a testament to my commitment to bringing ideas to life, where each
-        pixel becomes a brushstroke in the canvas of imagination.
+        Welcome to my data-driven journey. I’m fascinated by how artificial intelligence and statistics can reveal hidden patterns in the world around us —  
+from the pulse of human health to the rhythm of everyday life.
       </p>
       <br />
       <p>
-        I find inspiration in the world around me, whether through the pages of a captivating novel, the intricate
-        details of typography, or the vibrant hues of nature during my outdoor escapades.
+        To me, every dataset is a story waiting to be understood. Each model, each graph, is a step toward connecting insight with impact, turning numbers into knowledge that helps people live better.  
       </p>
       <br />
-      <p>If you're curious to dive deeper into my work, you can follow me:</p>
+      <p>If you’re curious about how AI and data science can make a real difference, let’s explore together.</p>
     </Fragment>
 
     <Fragment slot="bg">
