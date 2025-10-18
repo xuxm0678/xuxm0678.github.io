@@ -23,7 +23,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   site: 'https://xuxm0678.github.io',
-  base: '/xiaomengxu.github.io/',
+  base: '/',
   outDir: './dist',
   output: 'static',
   build: {
@@ -88,7 +88,7 @@ export default defineConfig({
   },
 
   vite: {
-     base: '/xiaomengxu.github.io/',
+     base: '/',
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),
