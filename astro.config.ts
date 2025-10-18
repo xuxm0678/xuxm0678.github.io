@@ -26,6 +26,10 @@ export default defineConfig({
   base: '/xiaomengxu.github.io/',
   outDir: './dist',
   output: 'static',
+  build: {
+    format: 'directory',
+  },
+  
 
   integrations: [
     tailwind({
