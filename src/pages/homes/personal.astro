@@ -12,7 +12,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
-  title: 'Personal Homepage Demo',
+  title: 'Xiaomeng Xu | Data & AI Portfolio',
 };
 ---
 
@@ -26,12 +26,12 @@ const metadata = {
         { text: 'Resume', href: '#resume' },
         { text: 'Porfolio', href: '#porfolio' },
         { text: 'Blog', href: '#blog' },
-        { text: 'Github', href: 'https://github.com/arthelokyo' },
+        { text: 'Github', href: 'https://github.com/xuxm0678' },
       ]}
       actions={[
         {
-          text: 'Hire me',
-          href: '#',
+          text: 'Contact Me',
+          href: '#consulting',
         },
       ]}
       isSticky
@@ -43,14 +43,14 @@ const metadata = {
 
   <Hero
     id="hero"
-    title="Sarah Johnson"
-    tagline="Personal Web Demo"
-    actions={[{ variant: 'primary', text: 'Hire me', href: getPermalink('/contact#form') }]}
+    title="Xiaomeng Xu"
+    tagline="Data Scientist & Biostatistician"
+    actions={[{ variant: 'primary', text: 'View Projects', href: '#projects' },
+{variant: 'secondary', text: 'Contact Me', href: '#consulting' }]}
   >
     <Fragment slot="subtitle">
-      I'm a Graphic Designer passionate about crafting visual stories. <br /> With 5 years of experience and a degree from
-      New York University's School of Design. I infuse vitality into brands and designs, transforming concepts into captivating
-      realities.
+      I’m passionate about applying <strong>AI and statistical modeling</strong> to improve healthcare and beyond. <br />
+    With experience in machine learning, predictive analytics, and data visualization, I bridge data and human insight to create real-world impact.
     </Fragment>
   </Hero>
 
