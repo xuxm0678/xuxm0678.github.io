@@ -11,7 +11,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "postbuild": "find dist -type f -name '*.html' -exec sed -i 's|/_astro/|/xiaomengxu.github.io/_astro/|g' {} +",
     "preview": "astro preview",
     "astro": "astro",
     "check": "npm run check:astro && npm run check:eslint && npm run check:prettier",
