@@ -16,38 +16,6 @@ import CVDRiskDemo from "../../../components/CVDRiskDemo";
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <img
-        src="/assets/images/cvd_project_cover.png"
-        alt="CVD Risk Project"
-        class="rounded-2xl shadow-lg w-full object-cover"
-      />
-      <div class="space-y-6">
-        <h2 class="text-2xl font-semibold">Overview</h2>
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          The prototype mimics a <strong>knowledge distillation framework</strong> where
-          a “student model” learns to approximate clinical risk equations
-          (e.g., Framingham or WHO non-lab CVD risk) using only wearable and lifestyle data.
-          The model output includes a predicted probability and feature contribution
-          visualization similar to SHAP.
-        </p>
-
-        <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Built with React + AstroWind</li>
-          <li>Interactive sliders and toggles for key features (age, heart rate, sleep efficiency, etc.)</li>
-          <li>Real-time probability update with color-coded risk gauge</li>
-          <li>Feature contribution chart for interpretability</li>
-        </ul>
-
-        <a
-          href="#cvd-demo"
-          class="inline-flex items-center px-5 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl shadow transition"
-        >
-          View Live Demo →
-        </a>
-      </div>
-    </div>
-
     <div id="cvd-demo" class="pt-20">
       <h2 class="text-3xl font-semibold mb-6 text-center">
         Interactive Cardiovascular Risk Demo
