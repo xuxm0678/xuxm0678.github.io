@@ -1,189 +1,137 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "~/components/ui/card";
-import { Label } from "~/components/ui/label";
-import { Slider } from "~/components/ui/slider";
-import { Switch } from "~/components/ui/switch";
-import { Button } from "~/components/ui/button";
 
-type Bool = 0 | 1;
+const CVDRiskDemo: React.FC = () => {
+  const [age, setAge] = useState(45);
+  const [restingHR, setRestingHR] = useState(72);
+  const [sleepEff, setSleepEff] = useState(82);
+  const [activity, setActivity] = useState(150);
+  const [diabetes, setDiabetes] = useState(false);
+  const [hypertension, setHypertension] = useState(false);
 
-interface Inputs {
-  age: number;
-  rhr: number;
-  sleep: number;
-  activity: number;
-  alcohol: Bool;
-  diabetes: Bool;
-  hypertension: Bool;
-}
+  // 模拟“模型风险计算”逻辑
+  const calculateRisk = () => {
+    let base = 5 + (age - 30) * 0.5 + (restingHR - 60) * 0.2;
+    base -= (sleepEff - 70) * 0.3 + (activity / 30) * 0.2;
+    if (diabetes) base += 10;
+    if (hypertension) base += 7;
+    return Math.min(Math.max(base, 1), 99);
+  };
 
-// 简化版风险计算函数
-function predict(x: Inputs) {
-  const z =
-    -2 +
-    0.05 * (x.age - 40) +
-    0.04 * (x.rhr - 70) -
-    0.03 * (x.sleep - 80) -
-    0.02 * (x.activity - 150) +
-    0.8 * x.alcohol +
-    0.9 * x.diabetes +
-    0.6 * x.hypertension;
-
-  const prob = 1 / (1 + Math.exp(-z));
-  return Math.min(Math.max(prob, 0), 1);
-}
-
-export default function CVDRiskDemo() {
-  const [x, setX] = useState<Inputs>({
-    age: 45,
-    rhr: 72,
-    sleep: 82,
-    activity: 150,
-    alcohol: 0,
-    diabetes: 0,
-    hypertension: 0,
-  });
-
-  const prob = useMemo(() => predict(x), [x]);
-  const risk =
-    prob >= 0.7
-      ? { label: "High", color: "bg-red-500" }
-      : prob >= 0.3
-      ? { label: "Moderate", color: "bg-amber-500" }
-      : { label: "Low", color: "bg-emerald-500" };
+  const risk = calculateRisk();
+  const shapValues = [
+    { name: "Age", value: (age - 30) * 0.5 },
+    { name: "Resting HR", value: (restingHR - 60) * 0.2 },
+    { name: "Sleep Efficiency", value: -(sleepEff - 70) * 0.3 },
+    { name: "Weekly Activity", value: -(activity / 30) * 0.2 },
+    { name: "Diabetes", value: diabetes ? 10 : 0 },
+    { name: "Hypertension", value: hypertension ? 7 : 0 },
+  ];
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <Card className="shadow-md">
-        <CardContent className="p-6 space-y-6">
-          <h2 className="text-2xl font-semibold mb-2">
-            Cardiovascular Risk Demo
-          </h2>
+    <Card className="max-w-3xl mx-auto p-8 shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Interactive Cardiovascular Risk Demo
+      </h2>
 
-          <p className="text-sm text-muted-foreground mb-4">
-            Adjust lifestyle and physiological parameters to see how risk
-            changes. (Demo only — not clinical.)
+      <CardContent className="space-y-5">
+        {/* Inputs */}
+        <div>
+          <label className="block font-medium">Age: {age} years</label>
+          <input
+            type="range"
+            min="20"
+            max="80"
+            value={age}
+            onChange={(e) => setAge(Number(e.target.value))}
+            className="w-full accent-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium">Resting Heart Rate: {restingHR} bpm</label>
+          <input
+            type="range"
+            min="50"
+            max="100"
+            value={restingHR}
+            onChange={(e) => setRestingHR(Number(e.target.value))}
+            className="w-full accent-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium">Sleep Efficiency: {sleepEff}%</label>
+          <input
+            type="range"
+            min="60"
+            max="100"
+            value={sleepEff}
+            onChange={(e) => setSleepEff(Number(e.target.value))}
+            className="w-full accent-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium">Weekly Activity: {activity} min</label>
+          <input
+            type="range"
+            min="0"
+            max="600"
+            value={activity}
+            onChange={(e) => setActivity(Number(e.target.value))}
+            className="w-full accent-blue-500"
+          />
+        </div>
+
+        <div className="flex justify-center gap-6">
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={diabetes}
+              onChange={(e) => setDiabetes(e.target.checked)}
+            />
+            Diabetes
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={hypertension}
+              onChange={(e) => setHypertension(e.target.checked)}
+            />
+            Hypertension
+          </label>
+        </div>
+
+        {/* Output */}
+        <div className="text-center mt-6">
+          <h3 className="text-4xl font-bold text-blue-600">{risk.toFixed(1)}%</h3>
+          <p className="text-gray-600">Estimated CVD Risk</p>
+          <p className={risk > 30 ? "text-red-600 font-semibold" : "text-green-600 font-semibold"}>
+            {risk > 30 ? "High Risk" : "Low Risk"}
           </p>
+        </div>
 
-          {/* 输入区域 */}
-          <div className="space-y-4">
-            <div>
-              <Label>Age: {x.age} years</Label>
-              <Slider
-                value={[x.age]}
-                min={18}
-                max={85}
-                step={1}
-                onValueChange={(v) => setX({ ...x, age: v[0] })}
-              />
-            </div>
-
-            <div>
-              <Label>Resting Heart Rate: {x.rhr} bpm</Label>
-              <Slider
-                value={[x.rhr]}
-                min={50}
-                max={110}
-                step={1}
-                onValueChange={(v) => setX({ ...x, rhr: v[0] })}
-              />
-            </div>
-
-            <div>
-              <Label>Sleep Efficiency: {x.sleep}%</Label>
-              <Slider
-                value={[x.sleep]}
-                min={50}
-                max={100}
-                step={1}
-                onValueChange={(v) => setX({ ...x, sleep: v[0] })}
-              />
-            </div>
-
-            <div>
-              <Label>Weekly Activity: {x.activity} min</Label>
-              <Slider
-                value={[x.activity]}
-                min={0}
-                max={400}
-                step={10}
-                onValueChange={(v) => setX({ ...x, activity: v[0] })}
-              />
-            </div>
-
-            {/* 开关项 */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-              {[
-                { key: "alcohol", label: "Alcohol" },
-                { key: "diabetes", label: "Diabetes" },
-                { key: "hypertension", label: "Hypertension" },
-              ].map((f) => (
-                <div key={f.key} className="flex items-center justify-between">
-                  <Label>{f.label}</Label>
-                  <Switch
-                    checked={Boolean(x[f.key as keyof Inputs])}
-                    onCheckedChange={(v) =>
-                      setX({ ...x, [f.key]: v ? 1 : 0 } as Inputs)
-                    }
-                  />
-                </div>
-              ))}
-            </div>
+        {/* SHAP explanation */}
+        <div className="mt-8">
+          <h4 className="text-lg font-semibold mb-2 text-center">Feature Contributions (SHAP-like)</h4>
+          <div className="space-y-2">
+            {shapValues.map((s, i) => (
+              <div key={i} className="flex items-center">
+                <div className="w-32 text-sm">{s.name}</div>
+                <div
+                  className={`h-3 rounded-full transition-all ${
+                    s.value >= 0 ? "bg-red-400" : "bg-green-400"
+                  }`}
+                  style={{ width: `${Math.abs(s.value) * 5}px` }}
+                />
+              </div>
+            ))}
           </div>
-
-          {/* 输出区域 */}
-          <div className="text-center border-t pt-6 mt-6">
-            <p className="text-sm text-muted-foreground mb-1">
-              Estimated Risk Probability
-            </p>
-            <div className="text-5xl font-bold mb-2">
-              {(prob * 100).toFixed(0)}%
-            </div>
-            <div className="inline-flex items-center gap-2">
-              <span
-                className={`inline-block w-2 h-2 rounded-full ${risk.color}`}
-              ></span>
-              <span className="text-lg font-medium">{risk.label} Risk</span>
-            </div>
-          </div>
-
-          {/* 示例按钮 */}
-          <div className="flex justify-center gap-3 pt-4">
-            <Button
-              variant="secondary"
-              onClick={() =>
-                setX({
-                  age: 30,
-                  rhr: 60,
-                  sleep: 90,
-                  activity: 200,
-                  alcohol: 0,
-                  diabetes: 0,
-                  hypertension: 0,
-                })
-              }
-            >
-              Low-Risk Example
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() =>
-                setX({
-                  age: 65,
-                  rhr: 88,
-                  sleep: 65,
-                  activity: 50,
-                  alcohol: 1,
-                  diabetes: 1,
-                  hypertension: 1,
-                })
-              }
-            >
-              High-Risk Example
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
-}
+};
+
+export default CVDRiskDemo;
