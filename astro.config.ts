@@ -2,7 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
@@ -12,6 +11,7 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
+import react from '@astrojs/react';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
@@ -35,6 +35,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    
     sitemap(),
     mdx(),
     icon({
@@ -72,7 +73,7 @@ export default defineConfig({
       SVG: false,
       Logger: 1,
     }),
-
+    react(),
     astrowind({
       config: './src/config.yaml',
     }),

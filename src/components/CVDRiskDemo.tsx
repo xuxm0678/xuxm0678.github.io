@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "~/components/ui/card";
+import { Label } from "~/components/ui/label";
+import { Slider } from "~/components/ui/slider";
+import { Switch } from "~/components/ui/switch";
+import { Button } from "~/components/ui/button";
 
 type Bool = 0 | 1;
 
