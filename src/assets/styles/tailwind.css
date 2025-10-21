@@ -126,6 +126,13 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 239 84% 67%;
     --radius: 0.75rem;
+
+     --background: var(--aw-color-bg-page);
+    --foreground: var(--aw-color-text-page);
+    --card: var(--aw-color-bg-page);
+    --card-foreground: var(--aw-color-text-page);
+    --popover: var(--aw-color-bg-page);
+    --popover-foreground: var(--aw-color-text-page);
   }
 
   .dark {
@@ -157,6 +164,13 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 239 84% 67%;
+
+    --background: var(--aw-color-bg-page-dark);
+    --foreground: var(--aw-color-text-page);
+    --card: var(--aw-color-bg-page-dark);
+    --card-foreground: var(--aw-color-text-page);
+    --popover: var(--aw-color-bg-page-dark);
+    --popover-foreground: var(--aw-color-text-page);
   }
 }
 
