@@ -1,6 +1,6 @@
 ---
 import Layout from "../../../layouts/PageLayout.astro";
-import CVDRiskDemo from "../../../components/CVDRiskDemo";
+import CVDRiskDemo from '~/components/CVDRiskDemo.tsx';
 ---
 
 <Layout title="Cardiovascular Risk Prediction Project">
@@ -20,7 +20,7 @@ import CVDRiskDemo from "../../../components/CVDRiskDemo";
       <h2 class="text-3xl font-semibold mb-6 text-center">
         Interactive Cardiovascular Risk Demo
       </h2>
-      <CVDRiskDemo />
+      <CVDRiskDemo client:visible />
     </div>
 
     <div class="text-sm text-center text-gray-500 dark:text-gray-400 pt-12">
