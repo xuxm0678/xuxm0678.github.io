@@ -17,9 +17,8 @@ interface Inputs {
   hypertension: Bool;
 }
 
-// --- Simple logistic demo model ---
+// 简化版风险计算函数
 function predict(x: Inputs) {
-  // 线性组合（简化逻辑回归示例）
   const z =
     -2 +
     0.05 * (x.age - 40) +
@@ -66,9 +65,8 @@ export default function CVDRiskDemo() {
             changes. (Demo only — not clinical.)
           </p>
 
-          {/* Inputs */}
+          {/* 输入区域 */}
           <div className="space-y-4">
-            {/* Age */}
             <div>
               <Label>Age: {x.age} years</Label>
               <Slider
@@ -80,7 +78,6 @@ export default function CVDRiskDemo() {
               />
             </div>
 
-            {/* Resting Heart Rate */}
             <div>
               <Label>Resting Heart Rate: {x.rhr} bpm</Label>
               <Slider
@@ -92,7 +89,6 @@ export default function CVDRiskDemo() {
               />
             </div>
 
-            {/* Sleep Efficiency */}
             <div>
               <Label>Sleep Efficiency: {x.sleep}%</Label>
               <Slider
@@ -104,7 +100,6 @@ export default function CVDRiskDemo() {
               />
             </div>
 
-            {/* Weekly Activity */}
             <div>
               <Label>Weekly Activity: {x.activity} min</Label>
               <Slider
@@ -116,7 +111,7 @@ export default function CVDRiskDemo() {
               />
             </div>
 
-            {/* Risk Factors */}
+            {/* 开关项 */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
               {[
                 { key: "alcohol", label: "Alcohol" },
@@ -136,7 +131,7 @@ export default function CVDRiskDemo() {
             </div>
           </div>
 
-          {/* Output */}
+          {/* 输出区域 */}
           <div className="text-center border-t pt-6 mt-6">
             <p className="text-sm text-muted-foreground mb-1">
               Estimated Risk Probability
@@ -152,7 +147,7 @@ export default function CVDRiskDemo() {
             </div>
           </div>
 
-          {/* Preset buttons */}
+          {/* 示例按钮 */}
           <div className="flex justify-center gap-3 pt-4">
             <Button
               variant="secondary"
