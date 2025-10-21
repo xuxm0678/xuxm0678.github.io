@@ -65,3 +65,10 @@ analytics:
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+
+colors:
+  primary: '#6366F1'   
+  secondary: '#3B82F6' 
+  accent: '#06B6D4'     
+  neutral: '#111827'    
+
