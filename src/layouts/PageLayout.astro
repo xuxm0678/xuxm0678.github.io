@@ -14,8 +14,6 @@ const { metadata } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
-    <Announcement />
-  </slot> -->
 
   <slot name="header">
     {Astro.url.pathname.includes('/projects/') ? (
