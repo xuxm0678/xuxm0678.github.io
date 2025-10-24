@@ -3,6 +3,7 @@ import plugin from 'tailwindcss/plugin';
 import typographyPlugin from '@tailwindcss/typography';
 
 export default {
+  darkMode: ['class', '[data-theme="dark"]'],
   content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
   	extend: {
@@ -92,5 +93,4 @@ export default {
     }),
       require("tailwindcss-animate")
 ],
-  darkMode: ['class', '[data-theme="dark"]'],
 };
