@@ -1,92 +1,92 @@
 ---
 import Layout from "../../../layouts/PageLayout.astro";
 import CVDRiskDemo from '~/components/CVDRiskDemo.tsx';
+import { Motion } from 'framer-motion';
 ---
 
-<Layout title="Cardiovascular Risk Prediction Project">
-  <section class="py-16 px-6 max-w-5xl mx-auto space-y-16">
+<Layout title="Cardiovascular Risk Prediction">
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
+    <div class="max-w-5xl mx-auto px-6 space-y-24">
 
-    <!-- ===== PROJECT INTRODUCTION ===== -->
-    <div class="space-y-10">
-      <!-- Title -->
-      <div class="text-center">
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-          Cardiovascular Risk Prediction Using Wearable and Behavioral Data
+      <!-- Hero Section -->
+      <div class="text-center space-y-6">
+        <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent">
+          Cardiovascular Risk Prediction
         </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          This project develops a <strong>wearable-driven cardiovascular risk scoring system</strong>
-          using statistical and machine learning methods. By combining physiological, behavioral,
-          and health indicators, it aims to enhance early identification of at-risk individuals
-          and demonstrate interpretable AI for health applications.
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          Integrating wearable, behavioral, and health data to develop an interpretable <strong>AI-powered risk scoring system</strong> for early detection and personalized digital health monitoring.
         </p>
       </div>
 
-      <!-- Background -->
-      <section id="background" class="space-y-3">
-        <h2 class="text-2xl font-semibold">Background</h2>
-        <p class="text-gray-700 dark:text-gray-300">
-          Cardiovascular disease (CVD) remains the world’s leading cause of death.
-          Traditional risk models such as Framingham or ASCVD rely on static clinical measures
-          like blood pressure and cholesterol, which often overlook real-time lifestyle and behavioral patterns.
+      <!-- Background / Motivation -->
+      <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-10 space-y-4 transition hover:shadow-xl duration-300">
+        <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-400">Background</h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Cardiovascular disease (CVD) remains the leading global cause of mortality. Traditional models like Framingham and ASCVD rely on static clinical measures, overlooking dynamic behavioral factors.
         </p>
-        <p class="text-gray-700 dark:text-gray-300">
-          In contrast, wearable devices continuously track metrics like <strong>resting heart rate,
-          sleep efficiency, activity level,</strong> and <strong>sedentary behavior</strong>.
-          These signals capture physiological stress and daily habits, offering new opportunities
-          for dynamic risk prediction and digital health monitoring.
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Wearable devices provide real-time indicators—<strong>heart rate, sleep efficiency, activity level</strong>—revealing daily stress and habits that can reshape how we understand risk.
         </p>
-      </section>
+      </div>
 
       <!-- Objective -->
-      <section id="objective" class="space-y-3">
-        <h2 class="text-2xl font-semibold">Objective</h2>
-        <p class="text-gray-700 dark:text-gray-300">
-          To build a reproducible pipeline that integrates wearable and behavioral features
-          to estimate individual cardiovascular risk and visualize model interpretability
-          using <strong>SHAP-style feature attributions</strong>.
+      <div class="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-10 shadow-inner">
+        <h2 class="text-3xl font-semibold text-center mb-4 text-gray-800 dark:text-white">Objective</h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Build a reproducible pipeline integrating wearable signals and behavioral data to estimate risk and visualize interpretability using <strong>SHAP-style feature attributions</strong>.
         </p>
-      </section>
+      </div>
 
-      <!-- Methods -->
-      <section id="methods" class="space-y-3">
-        <h2 class="text-2xl font-semibold">Methods</h2>
-        <ul class="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
-          <li><strong>Data Inputs:</strong> Derived from wearable signals and survey-based variables,
-            including resting heart rate, sleep efficiency, physical activity, substance/alcohol use,
-            BMI, hypertension, and diabetes status.</li>
-          <li><strong>Outcome:</strong> A composite cardiovascular risk index approximating disease burden,
-            weighted by literature-based clinical severity (e.g., congestive heart failure, diabetes, hypertension).</li>
-          <li><strong>Modeling:</strong> Baseline linear regression and an optimized
-            <strong>XGBoost</strong> model to capture nonlinearity and interactions.</li>
-          <li><strong>Validation:</strong> 5×3 repeated cross-validation with R² ≈ 0.63 and RMSE ≈ 0.058,
-            indicating good generalizability.</li>
-          <li><strong>Interpretation:</strong> SHAP values were computed to decompose individual predictions
-            into variable-level contributions.</li>
-        </ul>
-      </section>
+      <!-- Methods (cards) -->
+      <div class="space-y-8">
+        <h2 class="text-3xl font-semibold text-gray-800 dark:text-white text-center">Methods</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Data Inputs</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              Wearable signals and survey data — resting heart rate, sleep, activity, BMI, alcohol use, hypertension, diabetes.
+            </p>
+          </div>
+          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Modeling</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              Linear regression and <strong>XGBoost</strong> for nonlinearity and interaction effects, validated by 5×3 repeated CV (R² ≈ 0.63).
+            </p>
+          </div>
+          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Interpretation</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              SHAP values reveal the individual-level influence of behavioral and physiological factors on predicted risk.
+            </p>
+          </div>
+          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Outcome</h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              Composite risk index capturing multi-dimensional cardiovascular burden for personalized digital prevention.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <!-- Results -->
-      <section id="results" class="space-y-3">
-        <h2 class="text-2xl font-semibold">Key Findings</h2>
-        <p class="text-gray-700 dark:text-gray-300">
-          Behavioral and physiological factors such as <strong>alcohol/drug use, BMI, and age</strong>
-          were strong positive risk contributors, while <strong>sleep efficiency and physical activity</strong>
-          reduced estimated risk. These results emphasize the potential of wearable-based monitoring
-          for preventive cardiovascular care and personalized health analytics.
+      <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-10 space-y-4">
+        <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-400">Key Findings</h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <strong>Alcohol/drug use, BMI, and age</strong> increase risk, while <strong>sleep efficiency and physical activity</strong> reduce it. These insights highlight wearable-driven analytics as a tool for proactive health management.
         </p>
-      </section>
-    </div>
+      </div>
 
-    <!-- ===== DEMO SECTION ===== -->
-    <div id="cvd-demo" class="pt-10">
-      <h2 class="text-3xl font-semibold mb-6 text-center">
-        Interactive Cardiovascular Risk Demo
-      </h2>
-      <CVDRiskDemo client:visible />
-      <p class="text-sm text-center text-gray-500 dark:text-gray-400 pt-12">
-        * For educational and visualization purposes only. Not a clinical diagnostic tool.
-      </p>
-    </div>
+      <!-- Demo -->
+      <div class="pt-12 text-center">
+        <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-white">Interactive Demo</h2>
+        <div class="max-w-3xl mx-auto">
+          <CVDRiskDemo client:visible />
+        </div>
+        <p class="text-sm text-gray-500 dark:text-gray-400 pt-6">
+          * For educational and visualization purposes only.
+        </p>
+      </div>
 
+    </div>
   </section>
 </Layout>
