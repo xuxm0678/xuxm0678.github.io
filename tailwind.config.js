@@ -92,5 +92,5 @@ export default {
     }),
       require("tailwindcss-animate")
 ],
-  darkMode: ['class', 'class'],
+  darkMode: ['class', '[data-theme="dark"]'],
 };
