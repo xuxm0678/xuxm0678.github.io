@@ -55,8 +55,6 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
 
   <!-- Content Widget **************** -->
 
-<section class="relative dark:bg-[#0e1625] bg-blue-50 transition-colors duration-300">
-  <div class="absolute inset-0 -z-10 bg-blue-50 dark:bg-[#0e1625] transition-colors duration-300"></div>
   <Content
     id="about"
     columns={3}
@@ -96,9 +94,11 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
       <br />
       <p>If you’re curious about how AI and data science can make a real difference, let’s explore together.</p>
     </Fragment>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-[#0e1625]"></div>
+  </Fragment>
 
   </Content>
-</section>
 
   <!-- Steps Widget ****************** -->
 
@@ -227,10 +227,9 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
       </h3>
     </Fragment>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 transition-colors duration-300"></div>
-      <div class="absolute inset-0 hidden dark:block bg-[#0e1625]/95 transition-colors duration-300"></div>
-    </Fragment>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-[#0e1625]"></div>
+  </Fragment>
 
   </Content>
 
@@ -267,10 +266,9 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
       </h3>
     </Fragment>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 transition-colors duration-300"></div>
-      <div class="absolute inset-0 hidden dark:block bg-[#0e1625]/95 transition-colors duration-300"></div>
-    </Fragment>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-[#0e1625]"></div>
+  </Fragment>
 
   </Content>
 
@@ -306,10 +304,9 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
       </h3>
     </Fragment>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 transition-colors duration-300"></div>
-      <div class="absolute inset-0 hidden dark:block bg-[#0e1625]/95 transition-colors duration-300"></div>
-    </Fragment>
+   <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-[#0e1625]"></div>
+  </Fragment>
 
   </Content>
 
@@ -397,10 +394,9 @@ Through data science, statistical modeling, and creativity, I aim to turn comple
     title="Explore my insightful articles on my blog"
     information={`Dive into a realm of design wisdom and creative inspiration, where you'll find invaluable insights, practical tips, and captivating narratives that elevate and enrich your creative journey.`}
   >
-    <Fragment slot="bg">
-    <div class="absolute inset-0 bg-blue-50 transition-colors duration-300"></div>
-    <div class="absolute inset-0 hidden dark:block bg-[#0e1625]/95 transition-colors duration-300"></div>
-    </Fragment>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-[#0e1625]"></div>
+  </Fragment>
 
   </BlogLatestPosts>
 </Layout>
