@@ -1,0 +1,44 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+const metadata = { title: 'AI & Statistical Consulting — Xiaomeng Xu' };
+---
+
+<Layout metadata={metadata}>
+  <section id="consulting" class="py-20 px-6 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-6">AI & Statistical Consulting</h1>
+    <p class="text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto mb-10">
+      I provide applied data analytics, statistical modeling, and explainable AI solutions 
+      for research and innovation. My focus areas include healthcare, education, and 
+      human-centered data visualization.
+    </p>
+
+    <!-- 服务模块 -->
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 rounded-2xl shadow-md bg-blue-50 dark:bg-[#0e1625]">
+        <h3 class="text-xl font-semibold mb-2">Health & Biostatistics</h3>
+        <p>Regression, survival analysis, and ML models for health data. Interpretation via SHAP and visualization.</p>
+      </div>
+      <div class="p-6 rounded-2xl shadow-md bg-blue-50 dark:bg-[#0e1625]">
+        <h3 class="text-xl font-semibold mb-2">Education & Social Analytics</h3>
+        <p>Equity dashboards, time-to-degree modeling, and demographic gap analysis using R, SQL, and Power BI.</p>
+      </div>
+      <div class="p-6 rounded-2xl shadow-md bg-blue-50 dark:bg-[#0e1625]">
+        <h3 class="text-xl font-semibold mb-2">Visualization & AI Prototyping</h3>
+        <p>Interactive dashboards, R Shiny tools, and web demos (Astro + React) for data storytelling.</p>
+      </div>
+    </div>
+
+    <!-- 免费咨询模块 -->
+    <div class="text-center mt-16">
+      <h3 class="text-2xl font-semibold mb-3">Free Consultation</h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">
+        Interested in collaborating or getting feedback on your project?  
+        I offer a free 30-minute consultation to explore potential data solutions.
+      </p>
+      <a href="https://forms.gle/xxxxxx" target="_blank"
+         class="inline-block px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+         Book a Free Consultation
+      </a>
+    </div>
+  </section>
+</Layout>
