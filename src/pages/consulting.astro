@@ -3,10 +3,9 @@ import Layout from '~/layouts/Layout.astro';
 import { motion } from "framer-motion";
 
 const PAGE_TITLE = 'AI & Statistical Consulting';
-const PAGE_DESC =
-  'Transform complex data into insight, and insight into impact.';
-const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK'; // ← 换成你的 Google Form 链接
-const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
+const PAGE_DESC = 'Transform complex data into insight, and insight into impact.';
+const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK';
+const CONTACT_EMAIL = 'xuxm0678@gmail.com';
 
 const services = [
   { title: "Data Cleaning & Preparation", desc: "Comprehensive wrangling using R, Python, SAS, or SQL, including large-scale extraction (e.g., EHR), cleaning, and transformation into analysis-ready datasets with reproducible workflows." },
@@ -21,11 +20,26 @@ const services = [
 
 <Layout title={PAGE_TITLE} description={PAGE_DESC}>
 
+  {/* ===== 顶部导航栏 ===== */}
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="text-lg font-semibold text-gray-800 dark:text-white hover:text-cyan-500 transition">← Back to Main Page</a>
+      <nav class="hidden sm:flex items-center gap-6 text-gray-700 dark:text-gray-200 text-sm font-medium">
+        <a href="#about" class="hover:text-cyan-500 transition">About / Team</a>
+        <a href="#services" class="hover:text-cyan-500 transition">Services</a>
+        <a href="#process" class="hover:text-cyan-500 transition">How It Works</a>
+        <a href={CTA_FORM} class="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg shadow hover:scale-105 transition-transform">
+          Book
+        </a>
+      </nav>
+    </div>
+  </header>
+
   {/* ===== Hero with particle background ===== */}
-  <section id="hero" class="relative w-full overflow-hidden">
+  <section id="hero" class="relative w-full overflow-hidden pt-24 sm:pt-32">
     <canvas id="particleCanvas" class="absolute inset-0 w-full h-full"></canvas>
-    <div class="relative mx-auto max-w-5xl px-6 pt-28 pb-20 text-center z-10">
-      <h1 class="text-5xl sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
+    <div class="relative mx-auto max-w-5xl px-6 pb-20 text-center z-10">
+      <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight overflow-visible bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
         AI & Statistical Consulting
       </h1>
       <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -42,6 +56,77 @@ const services = [
       </div>
     </div>
   </section>
+
+  {/* ===== About / Team Section ===== */}
+<section
+  id="about"
+  class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 text-center"
+>
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+      About & Team
+    </h2>
+
+    <p class="text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-16">
+      Every project I take on is a collaboration built on curiosity, empathy, and precision.
+      When I’m not optimizing data workflows, I’m designing, exploring new ideas — or occasionally joined by my cat 🐾,
+      who insists on supervising all dashboard testing.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-12 sm:gap-20 items-center">
+      {/* --- Maggie --- */}
+      <motion.div
+        client:visible
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        class="flex flex-col items-center"
+      >
+        <div class="relative w-40 h-40 rounded-full overflow-hidden shadow-md hover:shadow-cyan-400/30 transition-all duration-500 hover:scale-105">
+          <img
+            src="/assets/images/maggie-portrait.png"
+            alt="Xiaomeng Xu portrait"
+            class="object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+        <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+          Xiaomeng “Maggie” Xu
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Chief Biostat & Data Science Consultant
+        </p>
+      </motion.div>
+
+      {/* --- Cat --- */}
+      <motion.div
+        client:visible
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true }}
+        class="flex flex-col items-center"
+      >
+        <div class="relative w-40 h-40 rounded-full overflow-hidden shadow-md hover:shadow-cyan-400/30 transition-all duration-500 hover:scale-105">
+          <img
+            src="/assets/images/cat-portrait.png"
+            alt="Cat assistant portrait"
+            class="object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+        <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+          Boba
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Lifetime Emotional Support Specialist
+        </p>
+      </motion.div>
+    </div>
+  </div>
+</section>
+
 
   {/* ===== Services ===== */}
   <section id="services" class="relative py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
@@ -81,26 +166,10 @@ const services = [
 
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-left">
         {[
-          {
-            step: "1",
-            title: "Submit",
-            text: "Share your goals, data sources, and timelines via the brief intake form."
-          },
-          {
-            step: "2",
-            title: "Scope",
-            text: "Align on problem framing, deliverables, and approach in a free 30-minute call."
-          },
-          {
-            step: "3",
-            title: "Build",
-            text: "Execute analysis or development with regular check-ins and transparent progress."
-          },
-          {
-            step: "4",
-            title: "Deliver",
-            text: "Ship final assets and documentation; iterate based on feedback and plan next steps."
-          }
+          { step: "1", title: "Submit", text: "Share your goals, data sources, and timelines via the brief intake form." },
+          { step: "2", title: "Scope", text: "Align on problem framing, deliverables, and approach in a free 30-minute call." },
+          { step: "3", title: "Build", text: "Execute analysis or development with regular check-ins and transparent progress." },
+          { step: "4", title: "Deliver", text: "Ship final assets and documentation; iterate based on feedback and plan next steps." }
         ].map((item, i) => (
           <motion.div
             client:visible
@@ -130,7 +199,7 @@ const services = [
         <a href={CTA_FORM} class="px-6 py-3 bg-white text-blue-700 font-semibold rounded-xl shadow hover:scale-105 transition-transform">
           Book Free Consultation
         </a>
-        <a href={CONTACT_EMAIL} class="px-6 py-3 border border-white rounded-xl text-white hover:bg-white/20 transition">
+        <a href={`mailto:${CONTACT_EMAIL}`} class="px-6 py-3 border border-white rounded-xl text-white hover:bg-white/20 transition">
           Email Me
         </a>
       </div>
@@ -144,14 +213,12 @@ const services = [
       const ctx = canvas.getContext('2d');
       let particles = [];
       const num = 90;
-
       function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight * 0.75;
       }
       window.addEventListener('resize', resize);
       resize();
-
       for (let i = 0; i < num; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -162,7 +229,6 @@ const services = [
           color: \`rgba(90, 230, 255, \${Math.random() * 0.7 + 0.3})\`
         });
       }
-
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let p of particles) {
@@ -170,10 +236,7 @@ const services = [
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.fill();
-
-          p.x += p.vx;
-          p.y += p.vy;
-
+          p.x += p.vx; p.y += p.vy;
           if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
           if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
         }
