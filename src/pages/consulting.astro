@@ -1,48 +1,53 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-// 如果你的项目未安装 Iconify，可将 <Icon ... /> 换成简单的 emoji 或内联 SVG。
-// AstroWind 默认已配置 Tailwind。
-import { Icon } from '@iconify-icon/astro';
+import {
+  Calendar,
+  Mail,
+  Workflow,
+  Laptop,
+  Presentation,
+  BrainCog,
+  ChartLine,
+  Target,
+  Broom
+} from "lucide-react";
 
 const PAGE_TITLE = 'AI & Statistical Consulting';
 const PAGE_DESC =
   'Turn complex data into clear, actionable insight — from data preparation and modeling to visualization, automation, and delivery.';
-const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK'; // TODO: 替换为你的 Google Form 链接
-const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的邮箱
+const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK'; // ← 换成你的 Google Form 链接
+const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
 ---
 
 <Layout title={PAGE_TITLE} description={PAGE_DESC}>
 
   {/* ===== Hero ===== */}
   <section id="hero" class="relative w-full">
-    <div class="mx-auto max-w-6xl px-6 pt-16 pb-12 sm:pt-24 sm:pb-16">
-      <div class="text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
-          AI &amp; Statistical Consulting
-        </h1>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-          Transform your data into insight — and insight into impact.
-        </p>
-        <p class="mt-2 text-base text-gray-500 dark:text-gray-400">
-          From data cleaning and modeling to dashboards and automation, I deliver analytics that drive decisions.
-        </p>
+    <div class="mx-auto max-w-6xl px-6 pt-16 pb-12 sm:pt-24 sm:pb-16 text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
+        AI &amp; Statistical Consulting
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Transform your data into insight — and insight into impact.
+      </p>
+      <p class="mt-2 text-base text-gray-500 dark:text-gray-400">
+        From data cleaning and modeling to dashboards and automation, I deliver analytics that drive decisions.
+      </p>
 
-        <div class="mt-8 flex items-center justify-center gap-4">
-          <a
-            href={CTA_FORM}
-            class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
-          >
-            <Icon icon="lucide:calendar" class="mr-2 h-5 w-5" />
-            Book Free Consultation
-          </a>
-          <a
-            href="#services"
-            class="inline-flex items-center rounded-2xl px-5 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-          >
-            <Icon icon="lucide:chevron-down" class="mr-2 h-5 w-5" />
-            View Services
-          </a>
-        </div>
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <a
+          href={CTA_FORM}
+          class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
+        >
+          <Calendar class="mr-2 h-5 w-5" />
+          Book Free Consultation
+        </a>
+        <a
+          href="#services"
+          class="inline-flex items-center rounded-2xl px-5 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+        >
+          View Services
+        </a>
       </div>
     </div>
   </section>
@@ -58,22 +63,22 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
       </div>
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Data Cleaning & Preparation -->
+        <!-- Data Cleaning -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:broom" class="h-6 w-6" />
+            <Broom class="h-6 w-6" />
             <h3 class="font-semibold">Data Cleaning &amp; Preparation</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-            Comprehensive wrangling using R, Python, SAS, or SQL — including large-scale extraction (e.g., EHR), 
+            Comprehensive wrangling using R, Python, SAS, or SQL — including large-scale extraction (e.g., EHR),
             cleaning, and transformation into analysis-ready datasets with reproducible workflows.
           </p>
         </div>
 
-        <!-- Statistical & ML Modeling -->
+        <!-- Modeling -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:brain-cog" class="h-6 w-6" />
+            <BrainCog class="h-6 w-6" />
             <h3 class="font-semibold">Statistical &amp; Machine Learning Modeling</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -82,34 +87,34 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
           </p>
         </div>
 
-        <!-- Analytical Interpretation & Insights -->
+        <!-- Insights -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:chart-line" class="h-6 w-6" />
+            <ChartLine class="h-6 w-6" />
             <h3 class="font-semibold">Analytical Interpretation &amp; Insights</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-            In-depth interpretation of model outputs to uncover patterns, quantify impact, and convert findings 
+            In-depth interpretation of model outputs to uncover patterns, quantify impact, and convert findings
             into actionable recommendations.
           </p>
         </div>
 
-        <!-- Data Visualization & Reporting -->
+        <!-- Visualization -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:presentation" class="h-6 w-6" />
+            <Presentation class="h-6 w-6" />
             <h3 class="font-semibold">Data Visualization &amp; Reporting</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-            Publication-ready figures and interactive dashboards (R Shiny / Power BI / Plotly) that clearly 
+            Publication-ready figures and interactive dashboards (R Shiny / Power BI / Plotly) that clearly
             communicate your story to stakeholders.
           </p>
         </div>
 
-        <!-- Data-Driven Insights & Strategy -->
+        <!-- Strategy -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:target" class="h-6 w-6" />
+            <Target class="h-6 w-6" />
             <h3 class="font-semibold">Data-Driven Insights &amp; Strategy</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -117,10 +122,10 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
           </p>
         </div>
 
-        <!-- Website & Dashboard Development -->
+        <!-- Web Dev -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:laptop" class="h-6 w-6" />
+            <Laptop class="h-6 w-6" />
             <h3 class="font-semibold">Website &amp; Dashboard Development</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -129,14 +134,14 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
           </p>
         </div>
 
-        <!-- Data Infrastructure & Automation -->
+        <!-- Automation -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition sm:col-span-2 lg:col-span-3">
           <div class="flex items-center gap-3">
-            <Icon icon="lucide:workflow" class="h-6 w-6" />
+            <Workflow class="h-6 w-6" />
             <h3 class="font-semibold">Data Infrastructure &amp; Automation</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-            Optimize pipelines, automate recurring reporting, and streamline ETL to improve efficiency, 
+            Optimize pipelines, automate recurring reporting, and streamline ETL to improve efficiency,
             scalability, and accuracy across teams.
           </p>
         </div>
@@ -147,64 +152,47 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
           href={CTA_FORM}
           class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
         >
-          <Icon icon="lucide:calendar" class="mr-2 h-5 w-5" />
+          <Calendar class="mr-2 h-5 w-5" />
           Book Free Consultation
         </a>
       </div>
     </div>
   </section>
 
-  {/* ===== Process / Workflow ===== */}
+  {/* ===== Process ===== */}
   <section id="process" class="py-14 sm:py-18">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-10 text-center">
-        <h2 class="text-3xl font-bold sm:text-4xl">How It Works</h2>
-        <p class="mt-3 text-gray-600 dark:text-gray-300">
-          A clear, collaborative workflow from request to delivery.
-        </p>
-      </div>
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl">How It Works</h2>
+      <p class="mt-3 text-gray-600 dark:text-gray-300">
+        A clear, collaborative workflow from request to delivery.
+      </p>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <!-- Step 1 -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-left">
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">1</span>
-            <h3 class="font-semibold">Submit</h3>
-          </div>
-          <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">1</span>
+          <h3 class="mt-3 font-semibold">Submit</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
             Share your goals, data sources, and timelines via the brief intake form.
           </p>
         </div>
-
-        <!-- Step 2 -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">2</span>
-            <h3 class="font-semibold">Scope</h3>
-          </div>
-          <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">2</span>
+          <h3 class="mt-3 font-semibold">Scope</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
             Align on problem framing, deliverables, and approach in a free 30-minute call.
           </p>
         </div>
-
-        <!-- Step 3 -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">3</span>
-            <h3 class="font-semibold">Build</h3>
-          </div>
-          <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">3</span>
+          <h3 class="mt-3 font-semibold">Build</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
             Execute analysis or development with regular check-ins and transparent progress.
           </p>
         </div>
-
-        <!-- Step 4 -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">4</span>
-            <h3 class="font-semibold">Deliver</h3>
-          </div>
-          <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 text-sm">4</span>
+          <h3 class="mt-3 font-semibold">Deliver</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
             Ship final assets and documentation; iterate based on feedback and plan next steps.
           </p>
         </div>
@@ -225,14 +213,14 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
             href={CTA_FORM}
             class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
           >
-            <Icon icon="lucide:calendar" class="mr-2 h-5 w-5" />
+            <Calendar class="mr-2 h-5 w-5" />
             Book Free Consultation
           </a>
           <a
             href={CONTACT_EMAIL}
             class="inline-flex items-center rounded-2xl px-5 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
           >
-            <Icon icon="lucide:mail" class="mr-2 h-5 w-5" />
+            <Mail class="mr-2 h-5 w-5" />
             Email Me
           </a>
         </div>
@@ -240,22 +228,4 @@ const CONTACT_EMAIL = 'mailto:your_email@example.com'; // TODO: 替换为你的�
     </div>
   </section>
 
-  {/* ===== Optional: Structured Data for SEO ===== */}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "AI & Statistical Consulting",
-      "description": {PAGE_DESC},
-      "url": "https://xiaomengxu.github.io/consulting",
-      "areaServed": "US",
-      "serviceType": [
-        "Data cleaning",
-        "Machine learning modeling",
-        "Data visualization",
-        "Dashboard development",
-        "ETL automation"
-      ]
-    }
-  </script>
 </Layout>
