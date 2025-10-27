@@ -1,8 +1,5 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import pkg from 'lucide-react';
-const { Calendar, Mail, Workflow, Laptop, Presentation, BrainCog, ChartLine, Target, Broom } = pkg;
-
 
 const PAGE_TITLE = 'AI & Statistical Consulting';
 const PAGE_DESC =
@@ -31,7 +28,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
           href={CTA_FORM}
           class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
         >
-          <Calendar class="mr-2 h-5 w-5" />
+          <span aria-hidden="true" class="mr-2">📅</span>
           Book Free Consultation
         </a>
         <a
@@ -58,7 +55,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Data Cleaning -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Broom class="h-6 w-6" />
+            <span aria-hidden="true">🧹</span>
             <h3 class="font-semibold">Data Cleaning &amp; Preparation</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -70,7 +67,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Modeling -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <BrainCog class="h-6 w-6" />
+            <span aria-hidden="true">🧠</span>
             <h3 class="font-semibold">Statistical &amp; Machine Learning Modeling</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -82,7 +79,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Insights -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <ChartLine class="h-6 w-6" />
+            <span aria-hidden="true">📈</span>
             <h3 class="font-semibold">Analytical Interpretation &amp; Insights</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -94,7 +91,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Visualization -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Presentation class="h-6 w-6" />
+            <span aria-hidden="true">🖥️</span>
             <h3 class="font-semibold">Data Visualization &amp; Reporting</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -106,7 +103,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Strategy -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Target class="h-6 w-6" />
+            <span aria-hidden="true">🎯</span>
             <h3 class="font-semibold">Data-Driven Insights &amp; Strategy</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -117,7 +114,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Web Dev -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition">
           <div class="flex items-center gap-3">
-            <Laptop class="h-6 w-6" />
+            <span aria-hidden="true">💻</span>
             <h3 class="font-semibold">Website &amp; Dashboard Development</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -129,7 +126,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
         <!-- Automation -->
         <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition sm:col-span-2 lg:col-span-3">
           <div class="flex items-center gap-3">
-            <Workflow class="h-6 w-6" />
+            <span aria-hidden="true">🧩</span>
             <h3 class="font-semibold">Data Infrastructure &amp; Automation</h3>
           </div>
           <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
@@ -144,7 +141,7 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
           href={CTA_FORM}
           class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
         >
-          <Calendar class="mr-2 h-5 w-5" />
+          <span aria-hidden="true" class="mr-2">📅</span>
           Book Free Consultation
         </a>
       </div>
@@ -205,14 +202,14 @@ const CONTACT_EMAIL = 'xuxm0678@gmail.com'; // ← 换成你的邮箱
             href={CTA_FORM}
             class="inline-flex items-center rounded-2xl px-5 py-3 text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow hover:opacity-90 transition"
           >
-            <Calendar class="mr-2 h-5 w-5" />
+            <span aria-hidden="true" class="mr-2">📅</span>
             Book Free Consultation
           </a>
           <a
             href={CONTACT_EMAIL}
             class="inline-flex items-center rounded-2xl px-5 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
           >
-            <Mail class="mr-2 h-5 w-5" />
+            <span aria-hidden="true" class="mr-2">✉️</span>
             Email Me
           </a>
         </div>
