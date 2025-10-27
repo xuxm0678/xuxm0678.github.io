@@ -1,6 +1,8 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { motion } from "framer-motion";
+import maggiePortrait from '~/assets/images/maggie-portrait.png';
+import catPortrait from '~/assets/images/cat-portrait.png';
 
 const PAGE_TITLE = 'AI & Statistical Consulting';
 const PAGE_DESC = 'Transform complex data into insight, and insight into impact.';
@@ -25,11 +27,11 @@ const services = [
     <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
       <a href="/" class="text-lg font-semibold text-gray-800 dark:text-white hover:text-cyan-500 transition">← Back to Main Page</a>
       <nav class="hidden sm:flex items-center gap-6 text-gray-700 dark:text-gray-200 text-sm font-medium">
-        <a href="#about" class="hover:text-cyan-500 transition">About / Team</a>
+        <a href="#team" class="hover:text-cyan-500 transition">Team Members</a>
         <a href="#services" class="hover:text-cyan-500 transition">Services</a>
         <a href="#process" class="hover:text-cyan-500 transition">How It Works</a>
         <a href={CTA_FORM} class="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg shadow hover:scale-105 transition-transform">
-          Book
+          Book Free Consultation
         </a>
       </nav>
     </div>
@@ -42,38 +44,25 @@ const services = [
       <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight overflow-visible bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
         AI & Statistical Consulting
       </h1>
-      <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Transform your data into insight — and insight into impact.  
+      <p class="mt-10 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Transform your data into insight, and insight into impact.  
         From data cleaning and modeling to dashboards and automation, I deliver analytics that drive decisions.
       </p>
-      <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href={CTA_FORM} class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-xl font-medium shadow-lg hover:scale-105 transition-transform">
-          Book Free Consultation
-        </a>
-        <a href="#services" class="px-6 py-3 border border-gray-400 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          View Services
-        </a>
-      </div>
     </div>
   </section>
 
-  {/* ===== About / Team Section ===== */}
+  {/* =====Team Section ===== */}
 <section
-  id="about"
+  id="team"
   class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 text-center"
 >
   <div class="mx-auto max-w-4xl px-6">
     <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-      About & Team
+      Team Members
     </h2>
 
-    <p class="text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-16">
-      Every project I take on is a collaboration built on curiosity, empathy, and precision.
-      When I’m not optimizing data workflows, I’m designing, exploring new ideas — or occasionally joined by my cat 🐾,
-      who insists on supervising all dashboard testing.
-    </p>
-
-    <div class="flex flex-col sm:flex-row justify-center gap-12 sm:gap-20 items-center">
+     <div class="flex flex-col sm:flex-row justify-center gap-16 sm:gap-24 items-start sm:items-center">
+      
       {/* --- Maggie --- */}
       <motion.div
         client:visible
@@ -81,20 +70,20 @@ const services = [
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        class="flex flex-col items-center"
+        class="flex flex-col items-center min-h-[320px]"
       >
-        <div class="relative w-40 h-40 rounded-full overflow-hidden shadow-md hover:shadow-cyan-400/30 transition-all duration-500 hover:scale-105">
+        <div class="relative w-44 h-44 rounded-full overflow-hidden shadow-lg hover:shadow-cyan-400/30 transition-all duration-700 hover:scale-105">
           <img
-            src="/assets/images/maggie-portrait.png"
+            src={maggiePortrait.src}
             alt="Xiaomeng Xu portrait"
             class="object-cover w-full h-full"
             loading="lazy"
           />
         </div>
-        <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+        <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-white text-center">
           Xiaomeng “Maggie” Xu
         </h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
           Chief Biostat & Data Science Consultant
         </p>
       </motion.div>
@@ -106,23 +95,24 @@ const services = [
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
-        class="flex flex-col items-center"
+        class="flex flex-col items-center min-h-[320px]"
       >
-        <div class="relative w-40 h-40 rounded-full overflow-hidden shadow-md hover:shadow-cyan-400/30 transition-all duration-500 hover:scale-105">
+        <div class="relative w-44 h-44 rounded-full overflow-hidden shadow-lg hover:shadow-cyan-400/30 transition-all duration-700 hover:scale-105">
           <img
-            src="/assets/images/cat-portrait.png"
+            src={catPortrait.src}
             alt="Cat assistant portrait"
             class="object-cover w-full h-full"
             loading="lazy"
           />
         </div>
-        <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+        <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-white text-center">
           Boba
         </h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
           Lifetime Emotional Support Specialist
         </p>
       </motion.div>
+
     </div>
   </div>
 </section>
