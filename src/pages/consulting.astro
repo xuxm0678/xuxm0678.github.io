@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const PAGE_TITLE = 'AI & Statistical Consulting';
 const PAGE_DESC =
   'Transform complex data into insight — and insight into impact.';
-const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK';   // ← 换成你的 Google Form 链接
+const CTA_FORM = 'YOUR_GOOGLE_FORM_LINK'; // ← 换成你的 Google Form 链接
 const CONTACT_EMAIL = 'mailto:your_email@example.com'; // ← 换成你的邮箱
 
 const services = [
@@ -21,11 +21,9 @@ const services = [
 
 <Layout title={PAGE_TITLE} description={PAGE_DESC}>
 
-  {/* ===== Hero Section ===== */}
+  {/* ===== Hero with particle background ===== */}
   <section id="hero" class="relative w-full overflow-hidden">
-    <!-- 🌌 粒子动画层 -->
     <canvas id="particleCanvas" class="absolute inset-0 w-full h-full"></canvas>
-
     <div class="relative mx-auto max-w-5xl px-6 pt-28 pb-20 text-center z-10">
       <h1 class="text-5xl sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
         AI & Statistical Consulting
@@ -45,7 +43,7 @@ const services = [
     </div>
   </section>
 
-  {/* ===== Services Section ===== */}
+  {/* ===== Services ===== */}
   <section id="services" class="relative py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
     <div class="mx-auto max-w-4xl px-6">
       <div class="mb-16 text-center">
@@ -58,11 +56,12 @@ const services = [
       <div class="flex flex-col gap-10">
         {services.map((s, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            client:visible
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
             viewport={{ once: true }}
-            class="rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm hover:shadow-xl hover:border-cyan-400 transition-all duration-300"
+            class="rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm hover:shadow-xl hover:border-cyan-400 transition-all duration-300"
           >
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{s.title}</h3>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{s.desc}</p>
@@ -72,7 +71,55 @@ const services = [
     </div>
   </section>
 
-  {/* ===== CTA Section ===== */}
+  {/* ===== How It Works ===== */}
+  <section id="process" class="py-24 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-gray-950 dark:to-gray-900">
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white">How It Works</h2>
+      <p class="mt-3 text-gray-600 dark:text-gray-300">
+        A clear, collaborative workflow from request to delivery.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-left">
+        {[
+          {
+            step: "1",
+            title: "Submit",
+            text: "Share your goals, data sources, and timelines via the brief intake form."
+          },
+          {
+            step: "2",
+            title: "Scope",
+            text: "Align on problem framing, deliverables, and approach in a free 30-minute call."
+          },
+          {
+            step: "3",
+            title: "Build",
+            text: "Execute analysis or development with regular check-ins and transparent progress."
+          },
+          {
+            step: "4",
+            title: "Deliver",
+            text: "Ship final assets and documentation; iterate based on feedback and plan next steps."
+          }
+        ].map((item, i) => (
+          <motion.div
+            client:visible
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            viewport={{ once: true }}
+            class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm p-6 hover:shadow-lg hover:border-cyan-400 transition-all duration-300"
+          >
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 dark:border-gray-600 text-sm font-medium text-gray-600 dark:text-gray-300">{item.step}</span>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{item.text}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ===== CTA ===== */}
   <section id="cta" class="py-24 text-center bg-gradient-to-r from-blue-700 to-cyan-500 text-white">
     <div class="mx-auto max-w-3xl px-6">
       <h2 class="text-3xl sm:text-4xl font-bold">Ready to get started?</h2>
@@ -96,11 +143,11 @@ const services = [
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
       let particles = [];
-      const num = 80;
+      const num = 90;
 
       function resize() {
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.7;
+        canvas.height = window.innerHeight * 0.75;
       }
       window.addEventListener('resize', resize);
       resize();
@@ -109,10 +156,10 @@ const services = [
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
-          size: Math.random() * 2 + 1,
-          color: \`rgba(100, 220, 255, \${Math.random() * 0.7 + 0.3})\`
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          size: Math.random() * 2 + 0.5,
+          color: \`rgba(90, 230, 255, \${Math.random() * 0.7 + 0.3})\`
         });
       }
 
