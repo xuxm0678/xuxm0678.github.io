@@ -93,4 +93,9 @@ export default {
     }),
       require("tailwindcss-animate")
 ],
+  safelist: [
+    {
+      pattern: /accent-(red|sky|blue|teal|emerald|amber|indigo|purple|pink)-\d{3}/,
+    },
+  ],
 };
