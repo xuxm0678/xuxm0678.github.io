@@ -18,72 +18,69 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- ===== Layered HERO (背景渐变 + 插图悬浮 + 居中标题) ===== -->
   <section
-    id="hero"
-    class="relative overflow-hidden isolate"
-  >
-    <!-- 背景主渐变 -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-cyan-600 to-teal-500 dark:from-[#0b1530] dark:via-[#0c213a] dark:to-[#103a46]"></div>
+  id="hero"
+  class="relative overflow-hidden isolate min-h-[85vh] flex items-center"
+>
+  <!-- 背景渐变 -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-cyan-600 to-teal-500 dark:from-[#0b1530] dark:via-[#0c213a] dark:to-[#103a46]"></div>
 
-    <!-- 柔光圆形装饰 -->
-    <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-cyan-300/20 blur-3xl"></div>
+  <!-- 背景插画层 (35% 透明度 + 混合模式) -->
+  <div
+    class="absolute inset-0 opacity-35 mix-blend-soft-light bg-cover bg-center"
+    style={`background-image: url('/assets/images/cvd-hero.png')`}
+  ></div>
 
-    <div class="relative z-10 max-w-[1600px] mx-auto px-8 sm:px-12 pt-28 pb-20 text-center">
-      <motion.h1
-        client:visible
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
-      >
-        Cardiovascular Risk Prediction
-      </motion.h1>
+  <!-- 装饰柔光 -->
+  <div class="pointer-events-none absolute -top-24 -left-24 h-[22rem] w-[22rem] rounded-full bg-white/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-cyan-300/30 blur-3xl"></div>
 
-      <motion.p
-        client:visible
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.08 }}
-        class="mt-6 text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl mx-auto"
-      >
-        Reimagining risk scoring with interpretable AI, real-world wearable signals, and behavioral data — built for proactive digital health monitoring.
-      </motion.p>
+  <!-- 文本内容 -->
+  <div class="relative z-10 max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-20 py-28">
+    <motion.h1
+      client:visible
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55 }}
+      class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight max-w-3xl"
+    >
+      Cardiovascular Risk<br />Prediction System
+    </motion.h1>
 
-      <!-- 悬浮插图 -->
-      <motion.img
-        client:visible
-        src={heroImg.src}
-        alt="AI & Wearable Health Illustration"
-        class="mx-auto mt-12 w-full max-w-4xl rounded-3xl shadow-2xl ring-1 ring-white/10 animate-float"
-        initial={{ opacity: 0, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-      />
+    <motion.p
+      client:visible
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.08 }}
+      class="mt-6 text-lg md:text-xl leading-relaxed text-white/90 max-w-2xl"
+    >
+      AI-powered, interpretable risk scoring using wearable signals, behavioral data, and clinically relevant predictors — built for proactive digital health monitoring.
+    </motion.p>
 
-      <!-- 锚点导航：玻璃感 Pills -->
-      <div class="mt-12 flex flex-wrap justify-center gap-3">
-        {[
-          ["Background", "#background"],
-          ["Objective", "#objective"],
-          ["Methods", "#methods"],
-          ["Findings", "#findings"],
-          ["Demo", "#demo"],
-          ["Impact", "#impact"],
-        ].map(([label, href]) => (
-          <a
-            href={href}
-            class="px-4 py-2 rounded-full bg-white/20 text-white/95 text-sm backdrop-blur-md border border-white/25 hover:bg-white/30 transition"
-            >{label}</a
-          >
-        ))}
-      </div>
+    <!-- 锚点导航 Pills -->
+    <div class="mt-12 flex flex-wrap gap-3">
+      {[
+        ["Background", "#background"],
+        ["Objective", "#objective"],
+        ["Methods", "#methods"],
+        ["Findings", "#findings"],
+        ["Demo", "#demo"],
+        ["Impact", "#impact"],
+      ].map(([label, href]) => (
+        <a
+          href={href}
+          class="px-4 py-2 rounded-full bg-white/20 text-white/95 text-sm backdrop-blur-md border border-white/25 hover:bg-white/30 transition"
+          >{label}</a
+        >
+      ))}
     </div>
+  </div>
 
-    <!-- 底部分隔（波形） -->
-    <svg class="relative z-10 block w-full text-white dark:text-gray-950" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,85.3C480,85,600,75,720,80C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
-    </svg>
-  </section>
+  <!-- 波形分隔 -->
+  <svg class="relative z-10 block w-full text-white dark:text-gray-950" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,85.3C480,85,600,75,720,80C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+  </svg>
+</section>
+
 
   <!-- ===== 主体内容容器 ===== -->
   <main class="relative bg-white dark:bg-gray-950">
