@@ -1,92 +1,196 @@
 ---
 import Layout from "../../layouts/PageLayout.astro";
-import CVDRiskDemo from '~/components/CVDRiskDemo.tsx';
-import { Motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import CVDRiskDemo from "~/components/CVDRiskDemo.tsx";
+
+// 占位插图（若没有可先放任意图片，后续替换）
+import heroImg from "~/assets/images/cvd-hero.png";
+import bgImg from "~/assets/images/cvd-bg.png";
+import riskImg from "~/assets/images/cvd-risk.png";
+
+const metadata = {
+  title: "Cardiovascular Risk Prediction",
+  description:
+    "AI-enabled risk scoring system integrating wearable, behavioral, and clinical data for interpretable digital health monitoring.",
+};
 ---
 
-<Layout title="Cardiovascular Risk Prediction">
-  <section class="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
-    <div class="max-w-[1600px] mx-auto px-8 sm:px-12 space-y-32">
+<Layout metadata={metadata}>
+  <!-- ===== Layered HERO (背景渐变 + 插图悬浮 + 居中标题) ===== -->
+  <section
+    id="hero"
+    class="relative overflow-hidden isolate"
+  >
+    <!-- 背景主渐变 -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-cyan-600 to-teal-500 dark:from-[#0b1530] dark:via-[#0c213a] dark:to-[#103a46]"></div>
 
-      <!-- Hero Section -->
-      <div class="text-center space-y-6">
-        <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent">
-          Cardiovascular Risk Prediction
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          Integrating wearable, behavioral, and health data to develop an interpretable <strong>AI-powered risk scoring system</strong> for early detection and personalized digital health monitoring.
-        </p>
+    <!-- 柔光圆形装饰 -->
+    <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-cyan-300/20 blur-3xl"></div>
+
+    <div class="relative z-10 max-w-[1600px] mx-auto px-8 sm:px-12 pt-28 pb-20 text-center">
+      <motion.h1
+        client:visible
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55 }}
+        class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
+      >
+        Cardiovascular Risk Prediction
+      </motion.h1>
+
+      <motion.p
+        client:visible
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.08 }}
+        class="mt-6 text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl mx-auto"
+      >
+        Reimagining risk scoring with interpretable AI, real-world wearable signals, and behavioral data — built for proactive digital health monitoring.
+      </motion.p>
+
+      <!-- 悬浮插图 -->
+      <motion.img
+        client:visible
+        src={heroImg.src}
+        alt="AI & Wearable Health Illustration"
+        class="mx-auto mt-12 w-full max-w-4xl rounded-3xl shadow-2xl ring-1 ring-white/10 animate-float"
+        initial={{ opacity: 0, scale: 0.96 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.15 }}
+      />
+
+      <!-- 锚点导航：玻璃感 Pills -->
+      <div class="mt-12 flex flex-wrap justify-center gap-3">
+        {[
+          ["Background", "#background"],
+          ["Objective", "#objective"],
+          ["Methods", "#methods"],
+          ["Findings", "#findings"],
+          ["Demo", "#demo"],
+          ["Impact", "#impact"],
+        ].map(([label, href]) => (
+          <a
+            href={href}
+            class="px-4 py-2 rounded-full bg-white/20 text-white/95 text-sm backdrop-blur-md border border-white/25 hover:bg-white/30 transition"
+            >{label}</a
+          >
+        ))}
       </div>
+    </div>
 
-      <!-- Background / Motivation -->
-      <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-10 space-y-4 transition hover:shadow-xl duration-300">
-        <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-400">Background</h2>
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Cardiovascular disease (CVD) remains the leading global cause of mortality. Traditional models like Framingham and ASCVD rely on static clinical measures, overlooking dynamic behavioral factors.
-        </p>
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Wearable devices provide real-time indicators—<strong>heart rate, sleep efficiency, activity level</strong>—revealing daily stress and habits that can reshape how we understand risk.
-        </p>
-      </div>
+    <!-- 底部分隔（波形） -->
+    <svg class="relative z-10 block w-full text-white dark:text-gray-950" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,85.3C480,85,600,75,720,80C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+    </svg>
+  </section>
 
-      <!-- Objective -->
-      <div class="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-10 shadow-inner">
-        <h2 class="text-3xl font-semibold text-center mb-4 text-gray-800 dark:text-white">Objective</h2>
-        <p class="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Build a reproducible pipeline integrating wearable signals and behavioral data to estimate risk and visualize interpretability using <strong>SHAP-style feature attributions</strong>.
-        </p>
-      </div>
+  <!-- ===== 主体内容容器 ===== -->
+  <main class="relative bg-white dark:bg-gray-950">
+    <div class="max-w-[1600px] mx-auto px-8 sm:px-12 space-y-32 py-24">
 
-      <!-- Methods (cards) -->
-      <div class="space-y-8">
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-white text-center">Methods</h2>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Data Inputs</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              Wearable signals and survey data — resting heart rate, sleep, activity, BMI, alcohol use, hypertension, diabetes.
-            </p>
-          </div>
-          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Modeling</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              Linear regression and <strong>XGBoost</strong> for nonlinearity and interaction effects, validated by 5×3 repeated CV (R² ≈ 0.63).
-            </p>
-          </div>
-          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Interpretation</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              SHAP values reveal the individual-level influence of behavioral and physiological factors on predicted risk.
-            </p>
-          </div>
-          <div class="bg-white/80 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 class="font-semibold text-lg text-blue-600 dark:text-blue-400 mb-2">Outcome</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              Composite risk index capturing multi-dimensional cardiovascular burden for personalized digital prevention.
-            </p>
-          </div>
+      <!-- Background（左右图文） -->
+      <section id="background" class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 mb-5">Background</h2>
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Cardiovascular disease (CVD) remains the leading global cause of mortality. Traditional models like Framingham and ASCVD rely on static clinical measures, overlooking dynamic physiological and behavioral factors.
+          </p>
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            Wearable devices provide real-time indicators—<strong>heart rate, sleep efficiency, activity level</strong>—revealing daily stress and habits that can reshape how we understand risk.
+          </p>
         </div>
-      </div>
+        <div class="flex justify-center">
+          <img src={bgImg.src} alt="Wearable data visualization"
+               class="w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60" />
+        </div>
+      </section>
 
-      <!-- Results -->
-      <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-10 space-y-4">
-        <h2 class="text-3xl font-semibold text-blue-600 dark:text-blue-400">Key Findings</h2>
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          <strong>Alcohol/drug use, BMI, and age</strong> increase risk, while <strong>sleep efficiency and physical activity</strong> reduce it. These insights highlight wearable-driven analytics as a tool for proactive health management.
-        </p>
-      </div>
+      <!-- Objective（中心发光卡片） -->
+      <section id="objective" class="text-center">
+        <div class="mx-auto max-w-4xl rounded-3xl p-10 sm:p-12 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-750 shadow-[0_20px_80px_-40px_rgba(0,0,0,.4)] ring-1 ring-gray-200/60 dark:ring-gray-700/60">
+          <h2 class="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Objective</h2>
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            Build a reproducible pipeline integrating wearable signals and behavioral data to estimate risk and visualize interpretability using <strong>SHAP-style feature attributions</strong>.
+          </p>
+        </div>
+      </section>
 
-      <!-- Demo -->
-      <div class="pt-12 text-center">
-        <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-white">Interactive Demo</h2>
-        <div class="max-w-3xl mx-auto">
+      <!-- Methods（四卡片 + hover） -->
+      <section id="methods">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white">Methods</h2>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            ["Data Inputs", "Wearable signals and survey data — resting HR, sleep, activity, BMI, alcohol use, hypertension, diabetes."],
+            ["Modeling", "Linear regression and XGBoost for nonlinearity and interaction effects, validated by 5×3 repeated CV (R² ≈ 0.63)."],
+            ["Interpretation", "SHAP values reveal the individual-level influence of behavioral and physiological factors on predicted risk."],
+            ["Outcome", "Composite risk index capturing multi-dimensional cardiovascular burden for personalized digital prevention."],
+          ].map(([title, desc], i) => (
+            <motion.div
+              client:visible
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: i * 0.05 }}
+              class="group p-8 rounded-2xl bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/70 dark:border-gray-800/70 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition"
+            >
+              <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{title}</h3>
+              <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Findings（左右图文） -->
+      <section id="findings" class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 mb-5">Key Findings</h2>
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <strong>Alcohol/drug use, BMI, and age</strong> increase risk, while <strong>sleep efficiency and physical activity</strong> reduce it. These insights highlight wearable-driven analytics as a tool for proactive health management.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <img src={riskImg.src} alt="SHAP feature importance"
+               class="w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60" />
+        </div>
+      </section>
+
+      <!-- Demo（产品化外框） -->
+      <section id="demo" class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Interactive Demo</h2>
+        <div class="mt-8 mx-auto max-w-4xl rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/70 dark:border-gray-800/70 shadow-[0_18px_80px_-30px_rgba(0,0,0,.35)] p-6 sm:p-10">
           <CVDRiskDemo client:visible />
         </div>
-        <p class="text-sm text-gray-500 dark:text-gray-400 pt-6">
-          * For educational and visualization purposes only.
-        </p>
-      </div>
+        <p class="text-sm text-gray-500 dark:text-gray-400 pt-6">* For educational and visualization purposes only.</p>
+      </section>
 
+      <!-- Impact & Next Steps（深色渐变CTA） -->
+      <section id="impact" class="text-center">
+        <div class="mx-auto max-w-5xl rounded-3xl p-12 sm:p-14 text-white bg-gradient-to-r from-blue-700 via-cyan-600 to-teal-500 shadow-[0_20px_90px_-40px_rgba(0,0,0,.6)]">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Impact & Next Steps</h2>
+          <p class="mt-4 text-lg text-blue-50 leading-relaxed">
+            This work demonstrates the potential of interpretable AI in preventive health. Next: expand datasets, validate across populations, and integrate the risk scoring system into digital health platforms.
+          </p>
+          <div class="mt-8">
+            <a href="/consulting" class="inline-block px-7 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:scale-[1.02] transition shadow">
+              Collaborate or Learn More →
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
+
+  <!-- 版权（简单） -->
+  <footer class="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+    © {new Date().getFullYear()} Xiaomeng “Maggie” Xu — Cardiovascular AI
+  </footer>
+
+  <!-- 全局样式：悬浮动画 & 深色微调 -->
+  <style is:global>
+    @keyframes float {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-10px) }
+    }
+    .animate-float { animation: float 8s ease-in-out infinite; }
+  </style>
 </Layout>
