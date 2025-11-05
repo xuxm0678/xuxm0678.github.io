@@ -405,7 +405,7 @@ export default function CVDRiskFromWearablesV3() {
                 Why Cardiovascular Prevention Matters
               </h4>
               <p className="text-sm text-gray-600 leading-relaxed">
-                >80% of premature CVD is preventable through lifestyle, wearable-guided monitoring,
+                &gt;80% of premature CVD is preventable through lifestyle, wearable-guided monitoring,
                 and early behavior feedback. Small changes made today compound into a healthier
                 decade ahead.
               </p>
