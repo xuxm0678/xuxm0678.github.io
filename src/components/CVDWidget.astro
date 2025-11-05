@@ -1,0 +1,93 @@
+---
+import { onMount } from "solid-js";
+import { createSignal } from "solid-js";
+
+const risk = createSignal(25);
+const age = createSignal(45);
+const bmi = createSignal(24);
+const sleep = createSignal(82);
+
+function getRiskLevel(val: number) {
+  if (val <= 30) return { label: "LOW RISK", color: "bg-green-500/20 text-green-300 border-green-500/50" };
+  if (val <= 60) return { label: "MODERATE RISK", color: "bg-yellow-500/20 text-yellow-300 border-yellow-500/50" };
+  return { label: "HIGH RISK", color: "bg-red-500/20 text-red-300 border-red-500/50" };
+}
+
+onMount(() => {
+  const animate = () => {
+    const newRisk = Math.floor(Math.random() * 75) + 5;
+    const newAge = 35 + Math.floor(Math.random() * 30);
+    const newBmi = 18 + Math.floor(Math.random() * 12);
+    const newSleep = 70 + Math.floor(Math.random() * 25);
+
+    tweenTo(risk, newRisk);
+    tweenTo(age, newAge);
+    tweenTo(bmi, newBmi);
+    tweenTo(sleep, newSleep);
+  };
+
+  const tweenTo = (signal: any, newValue: number) => {
+    const start = signal();
+    const diff = newValue - start;
+    const duration = 900;
+    const startTime = performance.now();
+
+    const tick = () => {
+      const now = performance.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      signal(Math.round(start + diff * progress));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const interval = setInterval(animate, 2800);
+  return () => clearInterval(interval);
+});
+---
+
+<div
+  id="cvd-widget"
+  class="w-[360px] sm:w-[400px] lg:w-[440px] rounded-2xl bg-[#0f1115] p-6 shadow-[0_28px_80px_-18px_rgba(0,0,0,0.55)] text-white transition-transform duration-300 will-change-transform"
+>
+  <h3 class="text-lg font-semibold tracking-tight">Cardiovascular Risk</h3>
+
+  <p class="mt-2 text-6xl font-extrabold bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent tracking-tight">
+    {risk()}%
+  </p>
+
+  <div
+    class={`mt-2 inline-block text-xs font-bold px-3 py-1 rounded-full border ${getRiskLevel(risk()).color}`}
+  >
+    {getRiskLevel(risk()).label}
+  </div>
+
+  <hr class="my-5 border-white/10" />
+
+  <p class="text-sm text-gray-400 mb-2">Key Factors</p>
+  <div class="flex justify-between text-sm"><span>Age</span><span>{age()}</span></div>
+  <div class="flex justify-between text-sm"><span>BMI</span><span>{bmi()}</span></div>
+  <div class="flex justify-between text-sm"><span>Sleep Efficiency</span><span>{sleep()}%</span></div>
+
+  <hr class="my-5 border-white/10" />
+
+  <a href="#demo" class="text-cyan-300 font-semibold hover:underline text-sm">Open Full Demo →</a>
+</div>
+
+<script>
+  // 3D Hover Tilt
+  const wrap = document.getElementById("cvd-widget");
+  if (wrap) {
+    wrap.addEventListener("mousemove", (e) => {
+      const r = wrap.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      const rx = (0.5 - y) * 10;
+      const ry = (x - 0.5) * 14;
+      wrap.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
+    });
+    wrap.addEventListener("mouseleave", () => {
+      wrap.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+    });
+  }
+</script>
