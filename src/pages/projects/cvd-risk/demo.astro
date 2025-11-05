@@ -1,0 +1,40 @@
+---
+import Layout from "../../../layouts/PageLayout.astro";
+import CVDRiskFromWearablesV2 from "~/components/CVDRiskFromWearablesV2.tsx";
+
+const metadata = {
+  title: "Cardiovascular Risk — Interactive Live Demo",
+  description:
+    "Adjust lifestyle & physiological variables and see real-time cardiovascular risk estimation powered by wearable-based machine learning.",
+};
+---
+
+<Layout metadata={metadata}>
+  <main class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
+    <!-- Header -->
+    <header class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/projects/cvd-risk" class="text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition">
+          ← Back to Project
+        </a>
+        <h1 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">
+          Cardiovascular Risk — Live Interactive Demo
+        </h1>
+        <span></span>
+      </div>
+    </header>
+
+    <!-- Demo container -->
+    <section class="flex-1 w-full py-12 sm:py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- ✅ New premium UI version -->
+        <CVDRiskFromWearablesV2 client:visible />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-gray-500 dark:text-gray-400">
+      © {new Date().getFullYear()} Xiaomeng “Maggie” Xu — Cardiovascular AI Demo
+    </footer>
+  </main>
+</Layout>
