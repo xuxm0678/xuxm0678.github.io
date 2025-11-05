@@ -76,33 +76,40 @@ const metadata = {
         </nav>
       </div>
 
-      <!-- 右：3D 浮动 Demo 卡片（玻璃 + 轻微倾斜/悬浮） -->
-      <div class="col-span-12 lg:col-span-6">
-        <div
-          id="tilt-wrap"
-          class="[perspective:1200px] mx-auto max-w-xl"
-        >
-          <div
-            id="tilt-card"
-            class="relative rounded-3xl border border-white/20 bg-white/15 backdrop-blur-xl shadow-[0_30px_120px_-30px_rgba(0,0,0,.45)]
-                   p-5 md:p-6 [transform-style:preserve-3d] will-change-transform animate-[float_8s_ease-in-out_infinite]"
-          >
-            <!-- 顶部条 -->
-            <div class="absolute left-0 right-0 top-0 h-10 rounded-t-3xl bg-gradient-to-r from-white/25 to-white/5"></div>
+<!-- 右侧：3D Tilt 预览卡片 -->
+      <div class="col-span-12 lg:col-span-6 flex justify-center lg:justify-end">
+        <div id="tilt-wrap" class="relative [perspective:1400px]">
+          <img
+            id="tilt-img"
+            src="/assets/images/cvd-widget.png"
+            alt="Cardiovascular Risk Preview"
+            class="w-[360px] sm:w-[400px] lg:w-[440px] rounded-2xl shadow-[0_28px_80px_-18px_rgba(0,0,0,0.55)] transition-transform duration-300 will-change-transform"
+            loading="eager"
+          />
+        </div>
+      </div>
+      
+      <script>
+        // ✅ 3D tilt effect (safe, small, no GPU overload)
+        const wrap = document.getElementById("tilt-wrap");
+        const img = document.getElementById("tilt-img");
+      
+        if (wrap && img) {
+          wrap.addEventListener("mousemove", (e) => {
+            const r = wrap.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width;
+            const y = (e.clientY - r.top) / r.height;
+            const rx = (0.5 - y) * 10;  // x-axis tilt
+            const ry = (x - 0.5) * 14;  // y-axis tilt
+            img.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
+          });
+      
+          wrap.addEventListener("mouseleave", () => {
+            img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+          });
+        }
+      </script>
 
-            <!-- Demo 预览：用你的组件或截图 -->
-            <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/20 bg-white/70">
-              <!-- 如果你要直接放组件： -->
-              <!-- <CVDRiskDemo client:visible /> -->
-
-              <!-- 若先放截图占位： -->
-              <img
-                src="/assets/images/cvd-hero.png"
-                alt="CVD Risk Demo"
-                class="block w-full"
-                loading="eager"
-              />
-            </div>
 
             <!-- 底部说明 -->
             <div class="mt-4 flex items-center justify-between">
