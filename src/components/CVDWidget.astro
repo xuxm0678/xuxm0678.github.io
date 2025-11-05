@@ -1,50 +1,4 @@
----
-import { onMount } from "solid-js";
-import { createSignal } from "solid-js";
 
-const risk = createSignal(25);
-const age = createSignal(45);
-const bmi = createSignal(24);
-const sleep = createSignal(82);
-
-function getRiskLevel(val: number) {
-  if (val <= 30) return { label: "LOW RISK", color: "bg-green-500/20 text-green-300 border-green-500/50" };
-  if (val <= 60) return { label: "MODERATE RISK", color: "bg-yellow-500/20 text-yellow-300 border-yellow-500/50" };
-  return { label: "HIGH RISK", color: "bg-red-500/20 text-red-300 border-red-500/50" };
-}
-
-onMount(() => {
-  const animate = () => {
-    const newRisk = Math.floor(Math.random() * 75) + 5;
-    const newAge = 35 + Math.floor(Math.random() * 30);
-    const newBmi = 18 + Math.floor(Math.random() * 12);
-    const newSleep = 70 + Math.floor(Math.random() * 25);
-
-    tweenTo(risk, newRisk);
-    tweenTo(age, newAge);
-    tweenTo(bmi, newBmi);
-    tweenTo(sleep, newSleep);
-  };
-
-  const tweenTo = (signal: any, newValue: number) => {
-    const start = signal();
-    const diff = newValue - start;
-    const duration = 900;
-    const startTime = performance.now();
-
-    const tick = () => {
-      const now = performance.now();
-      const progress = Math.min((now - startTime) / duration, 1);
-      signal(Math.round(start + diff * progress));
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const interval = setInterval(animate, 2800);
-  return () => clearInterval(interval);
-});
----
 
 <div
   id="cvd-widget"
@@ -52,22 +6,23 @@ onMount(() => {
 >
   <h3 class="text-lg font-semibold tracking-tight">Cardiovascular Risk</h3>
 
-  <p class="mt-2 text-6xl font-extrabold bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent tracking-tight">
-    {risk()}%
+  <p id="risk-value" class="mt-2 text-6xl font-extrabold bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent tracking-tight">
+    25%
   </p>
 
   <div
-    class={`mt-2 inline-block text-xs font-bold px-3 py-1 rounded-full border ${getRiskLevel(risk()).color}`}
+    id="risk-badge"
+    class="mt-2 inline-block text-xs font-bold px-3 py-1 rounded-full border bg-green-500/20 text-green-300 border-green-500/50"
   >
-    {getRiskLevel(risk()).label}
+    LOW RISK
   </div>
 
   <hr class="my-5 border-white/10" />
 
   <p class="text-sm text-gray-400 mb-2">Key Factors</p>
-  <div class="flex justify-between text-sm"><span>Age</span><span>{age()}</span></div>
-  <div class="flex justify-between text-sm"><span>BMI</span><span>{bmi()}</span></div>
-  <div class="flex justify-between text-sm"><span>Sleep Efficiency</span><span>{sleep()}%</span></div>
+  <div class="flex justify-between text-sm"><span>Age</span><span id="factor-age">45</span></div>
+  <div class="flex justify-between text-sm"><span>BMI</span><span id="factor-bmi">24</span></div>
+  <div class="flex justify-between text-sm"><span>Sleep Efficiency</span><span id="factor-sleep">82%</span></div>
 
   <hr class="my-5 border-white/10" />
 
@@ -75,19 +30,64 @@ onMount(() => {
 </div>
 
 <script>
-  // 3D Hover Tilt
-  const wrap = document.getElementById("cvd-widget");
-  if (wrap) {
-    wrap.addEventListener("mousemove", (e) => {
-      const r = wrap.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      const rx = (0.5 - y) * 10;
-      const ry = (x - 0.5) * 14;
-      wrap.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
-    });
-    wrap.addEventListener("mouseleave", () => {
-      wrap.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-    });
+  // ✅ Smooth tween number updates
+  function tween(el, newValue, suffix = "") {
+    const start = parseInt(el.textContent);
+    const diff = newValue - start;
+    const duration = 900;
+    const startTime = performance.now();
+
+    const tick = () => {
+      const now = performance.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      const value = Math.round(start + diff * progress);
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
+
+  // ✅ Risk badge color & label mapping
+  function updateRiskBadge(risk) {
+    const badge = document.getElementById("risk-badge");
+    if (risk <= 30) {
+      badge.textContent = "LOW RISK";
+      badge.className = base + " bg-green-500/20 text-green-300 border-green-500/50";
+    } else if (risk <= 60) {
+      badge.textContent = "MODERATE RISK";
+      badge.className = base + " bg-yellow-500/20 text-yellow-300 border-yellow-500/50";
+    } else {
+      badge.textContent = "HIGH RISK";
+      badge.className = base + " bg-red-500/20 text-red-300 border-red-500/50";
+    }
+  }
+  const base = "mt-2 inline-block text-xs font-bold px-3 py-1 rounded-full border";
+
+  // ✅ Auto animate every 2.8s
+  function animateValues() {
+    const risk = Math.floor(Math.random() * 75) + 5;
+    const age = 35 + Math.floor(Math.random() * 30);
+    const bmi = 18 + Math.floor(Math.random() * 12);
+    const sleep = 70 + Math.floor(Math.random() * 25);
+
+    tween(document.getElementById("risk-value"), risk, "%");
+    tween(document.getElementById("factor-age"), age);
+    tween(document.getElementById("factor-bmi"), bmi);
+    tween(document.getElementById("factor-sleep"), sleep, "%");
+    updateRiskBadge(risk);
+  }
+
+  setInterval(animateValues, 2800);
+
+  // ✅ Hover Tilt
+  const wrap = document.getElementById("cvd-widget");
+  wrap.addEventListener("mousemove", (e) => {
+    const r = wrap.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    wrap.style.transform = `rotateX(${(0.5 - y) * 10}deg) rotateY(${(x - 0.5) * 14}deg) scale(1.05)`;
+  });
+  wrap.addEventListener("mouseleave", () => {
+    wrap.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
 </script>
