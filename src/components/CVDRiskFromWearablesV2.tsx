@@ -1,7 +1,65 @@
+// ✅ 半圆仪表盘：用 strokeDasharray 控制显示，不再计算 X/Y 端点
+function SemicircleGauge({ pct }: { pct: number }) {
+  const p = Math.min(Math.max(pct, 0), 100) / 100; // 0~1 限制，避免 0 和 100 极值出 bug
+
+  const r = 80;   // 半径
+  const cx = 100; // 圆心 X
+  const cy = 100; // 圆心 Y
+
+  // 固定的半圆路径（不用随着数值计算端点，永远正确）
+  const d = `M ${cx - r},${cy} A ${r},${r} 0 0 1 ${cx + r},${cy}`;
+
+  const ref = React.useRef<SVGPathElement>(null);
+  const [len, setLen] = React.useState(0);
+
+  // 只在组件 mount 时运行一次：获取路径长度
+  React.useEffect(() => {
+    if (ref.current) setLen(ref.current.getTotalLength());
+  }, []);
+
+  // 根据百分比计算 dash 偏移，控制多少弧被显示
+  const offset = len * (1 - p);
+
+  return (
+    <svg viewBox="0 0 200 120" className="w-60 h-32 mx-auto">
+      <defs>
+        <linearGradient id="gaugeColor" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#38bdf8" />
+          <stop offset="50%" stopColor="#facc15" />
+          <stop offset="100%" stopColor="#ef4444" />
+        </linearGradient>
+      </defs>
+
+      {/* 背景半圆 */}
+      <path
+        d={d}
+        fill="none"
+        stroke="#E5E7EB"
+        strokeWidth="12"
+        strokeLinecap="round"
+      />
+
+      {/* 动态“进度弧” */}
+      <path
+        ref={ref}
+        d={d}
+        fill="none"
+        stroke="url(#gaugeColor)"
+        strokeWidth="12"
+        strokeLinecap="round"
+        style={{
+          strokeDasharray: len || 1,
+          strokeDashoffset: len ? offset : 0,
+          transition: "stroke-dashoffset .6s ease",
+        }}
+      />
+    </svg>
+  );
+}
+
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import RiskTrendChart from "./RiskTrendChart";
-import HeartModelCard from "./HeartModelCard";
 
 /* ---------- 类型 ---------- */
 type VarType = "range" | "switch" | "select";
@@ -155,14 +213,15 @@ export default function CVDRiskFromWearablesV3() {
 
                   {f.type === "range" && (
                     <input
-                      type="range"
-                      min={f.min}
-                      max={f.max}
-                      step={f.step}
-                      value={Number(vals[f.key])}
-                      onChange={(e) => set(f.key, Number(e.target.value))}
-                      className="w-full accent-sky-500"
-                    />
+                    type="range"
+                    min={f.min}
+                    max={f.max}
+                    step={f.step}
+                    value={Number(vals[f.key])}
+                    onChange={(e) => set(f.key, Number(e.target.value))}
+                    className="w-full slider-progress"
+                    style={{ "--value": Number(vals[f.key]), "--min": f.min, "--max": f.max } as React.CSSProperties}
+                    />                 
                   )}
 
                   {f.type === "switch" && (
@@ -205,60 +264,14 @@ export default function CVDRiskFromWearablesV3() {
             <h3 className="text-xl font-semibold mb-4 text-gray-800">Risk Overview</h3>
 
             {/* ----- 半圆仪表盘 + 数字百分比 ----- */}
-            <div className="relative w-60 h-32 mx-auto mb-4">
-              <svg viewBox="0 0 200 100" className="w-full h-full">
-                <defs>
-                  <linearGradient id="gaugeColor" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#38bdf8" />
-                    <stop offset="50%" stopColor="#facc15" />
-                    <stop offset="100%" stopColor="#ef4444" />
-                  </linearGradient>
-                </defs>
+            {/* ----- 半圆仪表盘 ----- */}
+            <SemicircleGauge pct={riskPct} />
 
-                {/* 背景弧 */}
-                <path
-                  d="M20,100 A80,80 0 0,1 180,100"
-                  fill="none"
-                  stroke="#E5E7EB"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                />
-
-                {/* 动态风险弧 */}
-                {(() => {
-                  const angle = Math.PI * (riskPct / 100);
-                  const r = 80;
-                  const cx = 100;
-                  const cy = 100;
-                  const startX = cx - r;
-                  const startY = cy;
-                  const endX = cx - r * Math.cos(angle);
-                  const endY = cy - r * Math.sin(angle);
-                  const largeArc = riskPct > 50 ? 1 : 0;
-                  const d = `M${startX},${startY} A${r},${r} 0 ${largeArc},1 ${endX},${endY}`;
-
-                  return (
-                    <motion.path
-                      d={d}
-                      fill="none"
-                      stroke="url(#gaugeColor)"
-                      strokeWidth="12"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.9 }}
-                    />
-                  );
-                })()}
-              </svg>
-
-              {/* 百分比数字 */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-3">
-                <div className="text-4xl font-extrabold bg-gradient-to-r from-sky-400 via-teal-400 to-amber-400 bg-clip-text text-transparent">
-                  {riskPct.toFixed(0)}%
-                </div>
-              </div>
+            {/* 百分比数字 */}
+            <div className="text-5xl font-extrabold bg-gradient-to-r from-sky-400 via-teal-400 to-amber-400 bg-clip-text text-transparent -mt-10 mb-2">
+              {riskPct.toFixed(0)}%
             </div>
+
 
             {/* 风险等级 Badge */}
             <div
@@ -285,41 +298,7 @@ export default function CVDRiskFromWearablesV3() {
             <h4 className="text-base font-semibold mb-4 text-gray-800 flex justify-between">
               Risk Trend (last 30 updates)
             </h4>
-
-            <div className="h-40">
-              <Line
-                data={{
-                  labels: riskHistory.map((_, i) => i + 1),
-                  datasets: [
-                    {
-                      label: "Risk %",
-                      data: riskHistory,
-                      borderWidth: 3,
-                      fill: false,
-                      tension: 0.3,
-                      borderColor: (ctx) => {
-                        const v = ctx?.raw ?? 0;
-                        return v > 70
-                          ? "#ef4444"
-                          : v > 30
-                          ? "#facc15"
-                          : "#22c55e";
-                      },
-                    },
-                  ],
-                }}
-                options={{
-                  responsive: true,
-                  animation: false,
-                  scales: {
-                    y: { min: 0, max: 100, ticks: { stepSize: 20 } },
-                  },
-                  plugins: {
-                    legend: { display: false },
-                  },
-                }}
-              />
-            </div>
+            <RiskTrendChart riskPct={riskPct} />
           </div>
 
 
@@ -417,3 +396,30 @@ export default function CVDRiskFromWearablesV3() {
     </section>
   );
 }
+
+<style jsx>{`
+  .slider-thumb {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #38bdf8, #0ea5e9);
+  }
+
+  .slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    background: white;
+    border: 2px solid #0ea5e9;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 0 6px rgba(0, 150, 255, 0.3);
+  }
+
+  .slider-thumb::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+  }
+`}</style>

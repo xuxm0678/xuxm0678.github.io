@@ -178,7 +178,34 @@
   * { @apply border-border; }
   body { @apply bg-background text-foreground; }
 }
+/* === Custom dynamic progress range slider === */
+input[type="range"].slider-progress {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(#38bdf8, #0ea5e9) 0/var(--sx) 100% no-repeat, #e5e7eb;
+}
 
+/* 动态进度计算：百分比 = (value - min) / (max - min) */
+input[type="range"].slider-progress {
+  --percent: calc((var(--value) - var(--min)) / (var(--max) - var(--min)));
+  --sx: calc(var(--percent) * 100%);
+}
 
+input[type="range"].slider-progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  background: white;
+  border: 2px solid #0ea5e9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 0 6px rgba(0, 150, 255, 0.3);
+}
 
-
+input[type="range"].slider-progress::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+}
