@@ -10,7 +10,7 @@ import riskImg from "~/assets/images/cvd-risk.png";
 const metadata = {
   title: "Cardiovascular Risk Prediction",
   description:
-    "AI-enabled risk scoring system integrating wearable, behavioral, and clinical data for interpretable digital health monitoring.",
+    "A cardiovascular risk prediction model trained on patient records from the Michigan Medicine Precision Health EHR dataset, including demographic, biometric, and behavior-related variables.",
 };
 ---
 
@@ -35,26 +35,22 @@ const metadata = {
         </h1>
 
         <p class="mt-5 text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl">
-          Real-time AI risk scoring from wearable, behavioral, and clinical data — built for proactive digital health monitoring.
+          A cardiovascular risk prediction model trained on patient records from the Michigan Medicine Precision Health EHR dataset.
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#demo" class="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 shadow hover:shadow-lg hover:-translate-y-0.5 transition">
+          <a href="/projects/cvd-risk/demo" class="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 shadow hover:shadow-lg hover:-translate-y-0.5 transition">
             Try the Demo →
-          </a>
-          <a href="#methods" class="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-5 py-3 font-semibold text-white/95 backdrop-blur-md hover:bg-white/20 transition">
-            Methods
           </a>
         </div>
 
         <!-- 胶囊导航 -->
         <nav id="hero-pills" class="mt-10 flex flex-wrap gap-2">
           {[
-            ["Background", "#background"],
+            ["Introduction", "#introduction"],
             ["Objective", "#objective"],
             ["Methods", "#methods"],
             ["Findings", "#findings"],
-            ["Demo", "#demo"],
             ["Impact", "#impact"],
           ].map(([label, href]) => (
             <a
@@ -69,7 +65,7 @@ const metadata = {
         </nav>
       </div>
 
-      <!-- ✅ 右侧 动态 UI Widget -->
+      <!-- 右侧 动态 UI Widget -->
       <div class="col-span-12 lg:col-span-6 flex justify-center lg:justify-end">
         <CVDWidget client:visible />
       </div>
@@ -83,50 +79,146 @@ const metadata = {
 <main class="relative bg-white dark:bg-gray-950">
   <div class="max-w-[1600px] mx-auto px-8 sm:px-12 space-y-32 py-24">
 
-    <!-- Background -->
-    <section id="background" class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 mb-5">Background</h2>
-        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          Cardiovascular disease (CVD) remains the leading global cause of mortality. Traditional models like Framingham and ASCVD rely on static clinical measures, overlooking dynamic physiological and behavioral factors.
-        </p>
-        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Wearable devices provide real-time indicators—<strong>heart rate, sleep efficiency, activity level</strong>—revealing daily stress and habits that can reshape how we understand risk.
-        </p>
-      </div>
-      <div class="flex justify-center">
-        <img src={bgImg.src} alt="Wearable data visualization"
-             class="w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60" />
-      </div>
-    </section>
+   <section
+  id="introduction"
+  class="relative py-24 px-6 bg-gradient-to-b from-white to-[#f7fbff] dark:from-[#0a0f1a] dark:to-[#0e1828]"
+>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 items-center">
+    <!-- Left Text Block -->
+    <div class="space-y-8 text-[18px] leading-relaxed text-gray-700 dark:text-gray-300">
+      <p class="text-2xl font-medium text-gray-900 dark:text-white">
+        Imagine if you could see your cardiovascular risk not once a year during a check-up, but every day.
+      </p>
+
+      <p>
+        Cardiovascular disease (CVD) remains the <strong>#1 global cause of death</strong>, responsible for nearly one-third of annual fatalities. Traditional risk scores such as Framingham and ASCVD are calculated from a single static snapshot of clinical data. They identify who is high-risk, but not when someone is drifting toward danger in real time.
+      </p>
+
+      <p>
+        Meanwhile, wearable devices continuously capture heart-rate trends, sleep regularity, and physical activity patterns, revealing the subtle rhythms of physiology and behavior that shape long-term risk. In this project, I reconstruct clinical risk scores from these real-world signals, turning yearly snapshots into a <strong>daily, behavior-aware estimate</strong>.
+      </p>
+
+      <p class="font-semibold text-gray-900 dark:text-white">
+        Toward continuous, personalized prevention, making cardiovascular risk tracking more timely, actionable, and grounded in everyday life.
+      </p>
+    </div>
+
+    <!-- Right Image Block -->
+    <div class="flex justify-center lg:justify-end">
+      <img
+        src={heroImg.src}
+        alt="Wearable AI CVD Concept"
+        class="w-full max-w-md lg:max-w-lg rounded-xl drop-shadow-xl"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
 
     <!-- Objective -->
     <section id="objective" class="text-center">
-      <div class="mx-auto max-w-4xl rounded-3xl p-10 sm:p-12 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-750 shadow-[0_20px_80px_-40px_rgba(0,0,0,.4)] ring-1 ring-gray-200/60 dark:ring-gray-700/60">
+      <div class="mx-auto max-w-5xl rounded-3xl p-10 sm:p-12 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-750 shadow-[0_20px_80px_-40px_rgba(0,0,0,.4)] ring-1 ring-gray-200/60 dark:ring-gray-700/60">
         <h2 class="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Objective</h2>
         <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Build a reproducible pipeline integrating wearable signals and behavioral data to estimate risk and visualize interpretability using <strong>SHAP-style feature attributions</strong>.
+          Build a continuous cardiovascular risk scoring system that reconstructs validated clinical risk scores using large-scale EHR data and behavior-linked physiological markers, with model interpretability exposed through SHAP-based explanations.
         </p>
       </div>
     </section>
 
     <!-- Methods -->
-    <section id="methods">
-      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white">Methods</h2>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          ["Data Inputs", "Wearable signals and survey data — resting HR, sleep, activity, BMI, alcohol use, hypertension, diabetes."],
-          ["Modeling", "Linear regression and XGBoost for nonlinearity and interaction effects, validated by 5×3 repeated CV (R² ≈ 0.63)."],
-          ["Interpretation", "SHAP values reveal the individual-level influence of behavioral and physiological factors on predicted risk."],
-          ["Outcome", "Composite risk index capturing multi-dimensional cardiovascular burden for personalized digital prevention."],
-        ].map(([title, desc], i) => (
-          <div class="group p-8 rounded-2xl bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/70 dark:border-gray-800/70 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition">
-            <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{title}</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <section id="methods" class="py-20">
+  <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-12 text-center">
+    Methods
+  </h2>
+
+  <!-- ✅ PIPELINE -->
+  <div class="mb-16">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">
+      End-to-End Modeling Pipeline
+    </h3>
+
+    <div class="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10 max-w-6xl mx-auto">
+      <div class="step-box">1. Extract EHR Data</div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">2. Clean & Normalize<br><span class="sub">missing, outliers, coding</span></div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">3. Feature Engineering<br><span class="sub">aggregation, scaling, encoding</span></div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">4. Baseline Model<br><span class="sub">Linear Regression</span></div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">5. XGBoost + Log Transform<br><span class="sub">hyperparameter tuning</span></div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">6. 5×3 Repeated CV<br><span class="sub">stability validation</span></div>
+      <div class="arrow">→</div>
+
+      <div class="step-box">7. SHAP Explainability<br><span class="sub">individual risk drivers</span></div>
+    </div>
+  </div>
+
+  <!-- ✅ 4 METHOD CARDS -->
+  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    
+    <div class="method-card">
+      <h4 class="method-title">Data Inputs</h4>
+      <p>
+        600K+ patient records from the Michigan Medicine Precision Health EHR cohort, including demographics, vitals, lab values, medications, and behavior-linked physiological markers (resting heart rate, BMI, blood pressure, metabolic panels, etc.).
+      </p>
+    </div>
+
+    <div class="method-card">
+      <h4 class="method-title">Modeling</h4>
+      <p>
+        Began with a linear regression baseline (R² ≈ 0.32).  
+        Initial XGBoost models overfit, so the skewed outcome was log-transformed and hyperparameters were tuned, resulting in stable performance (AUC ≈ 0.84 under 5×3 CV).
+      </p>
+    </div>
+
+    <div class="method-card">
+      <h4 class="method-title">Interpretation</h4>
+      <p>
+        SHAP values quantify individual-level risk drivers, exposing nonlinear effects of physiologic and lifestyle-linked predictors and enabling clinician-readable explanations.
+      </p>
+    </div>
+
+    <div class="method-card">
+      <h4 class="method-title">Outcome</h4>
+      <p>
+        A behavior-aware risk estimate that updates more frequently than static clinic-based scores, supporting early detection and preventive digital health intervention design.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ----------- Pipeline styles ----------- */
+  .step-box {
+    @apply border border-gray-300 dark:border-gray-600 rounded-xl px-5 py-4 text-center text-gray-800 dark:text-gray-200 text-sm font-medium bg-white/40 dark:bg-white/5 shadow-sm;
+    min-width: 180px;
+  }
+  .arrow {
+    @apply text-gray-500 dark:text-gray-400 text-2xl hidden md:flex items-center;
+  }
+  @media (max-width: 768px) {
+    .arrow { display: none; }
+    #pipeline .flex { flex-direction: column; gap: 14px; }
+  }
+  .sub { @apply text-xs opacity-70; }
+
+  /* ----------- Method cards ----------- */
+  .method-card {
+    @apply bg-white/70 dark:bg-white/5 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-md backdrop-blur;
+  }
+  .method-title {
+    @apply text-lg font-semibold text-blue-700 dark:text-blue-300 mb-3;
+  }
+</style>
+
 
     <!-- Findings -->
     <section id="findings" class="grid lg:grid-cols-2 gap-16 items-center">
@@ -140,15 +232,6 @@ const metadata = {
         <img src={riskImg.src} alt="SHAP feature importance"
              class="w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60" />
       </div>
-    </section>
-
-    <!-- Demo -->
-    <section id="demo" class="text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Interactive Demo</h2>
-      <div class="mt-8 mx-auto max-w-4xl rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/70 dark:border-gray-800/70 shadow-[0_18px_80px_-30px_rgba(0,0,0,.35)] p-6 sm:p-10">
-        <CVDRiskDemo client:visible />
-      </div>
-      <p class="text-sm text-gray-500 dark:text-gray-400 pt-6">* For educational and visualization purposes only.</p>
     </section>
 
     <!-- Impact -->
