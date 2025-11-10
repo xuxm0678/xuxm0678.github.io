@@ -1,11 +1,14 @@
 ---
+import { motion } from "framer-motion";
+import Image from "~/components/common/Image.astro";
 import Layout from "../../layouts/PageLayout.astro";
 import CVDRiskDemo from "~/components/CVDRiskDemo.tsx";
 import CVDWidget from "~/components/CVDWidget.astro";
 
 import heroImg from "~/assets/images/cvd-hero.png";
-import bgImg from "~/assets/images/cvd-bg.png";
-import riskImg from "~/assets/images/cvd-risk.png";
+import shapImg from "~/assets/images/shap-summary.png";
+import distImg from "~/assets/images/risk-distribution.png";
+
 
 const metadata = {
   title: "Cardiovascular Risk Prediction",
@@ -119,7 +122,7 @@ const metadata = {
     <!-- Objective -->
     <section id="objective" class="text-center">
       <div class="mx-auto max-w-5xl rounded-3xl p-10 sm:p-12 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-750 shadow-[0_20px_80px_-40px_rgba(0,0,0,.4)] ring-1 ring-gray-200/60 dark:ring-gray-700/60">
-        <h2 class="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Objective</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Objective</h2>
         <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           Build a continuous cardiovascular risk scoring system that reconstructs validated clinical risk scores using large-scale EHR data and behavior-linked physiological markers, with model interpretability exposed through SHAP-based explanations.
         </p>
@@ -127,10 +130,8 @@ const metadata = {
     </section>
 
     <!-- Methods -->
-    <section id="methods" class="py-20">
-  <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-12 text-center">
-    Methods
-  </h2>
+    <section id="methods" class="text-center">
+  <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Methods</h2>
 
   <!-- ✅ PIPELINE -->
   <div class="mb-16">
@@ -167,22 +168,21 @@ const metadata = {
     <div class="method-card">
       <h4 class="method-title">Data Inputs</h4>
       <p>
-        600K+ patient records from the Michigan Medicine Precision Health EHR cohort, including demographics, vitals, lab values, medications, and behavior-linked physiological markers (resting heart rate, BMI, blood pressure, metabolic panels, etc.).
+        33K+ longitudinal records combining wearable-derived metrics (resting heart rate, activity, sleep) and key clinical indicators (BMI, diabetes, hypertension, heart failure).
       </p>
     </div>
 
     <div class="method-card">
       <h4 class="method-title">Modeling</h4>
       <p>
-        Began with a linear regression baseline (R² ≈ 0.32).  
-        Initial XGBoost models overfit, so the skewed outcome was log-transformed and hyperparameters were tuned, resulting in stable performance (AUC ≈ 0.84 under 5×3 CV).
+        Started with a linear regression baseline (R² ≈ 0.20). Early XGBoost runs overfit, so the outcome was log-transformed and regularized, yielding consistent performance (mean cross-validated R² ≈ 0.63).
       </p>
     </div>
 
     <div class="method-card">
       <h4 class="method-title">Interpretation</h4>
       <p>
-        SHAP values quantify individual-level risk drivers, exposing nonlinear effects of physiologic and lifestyle-linked predictors and enabling clinician-readable explanations.
+        SHAP values quantify individual-level risk drivers, exposing nonlinear effects of physiologic and lifestyle-linked predictors and enabling readable explanations.
       </p>
     </div>
 
@@ -220,26 +220,67 @@ const metadata = {
 </style>
 
 
-    <!-- Findings -->
-    <section id="findings" class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 mb-5">Key Findings</h2>
-        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          <strong>Alcohol/drug use, BMI, and age</strong> increase risk, while <strong>sleep efficiency and physical activity</strong> reduce it.
-        </p>
+   <section
+  id="findings"
+  class="relative w-screen left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] py-20 px-6 sm:px-10 
+  bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 
+  dark:from-[#0a0f1f] dark:via-[#0c1830] dark:to-[#0b2040]"
+>
+  <!-- 标题区 -->
+  <div class="max-w-5xl mx-auto text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Findings</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+      Visualizing and interpreting the model’s internal logic and output distribution.
+    </p>
+  </div>
+
+  <!-- 两个卡片区域 -->
+  <div class="flex flex-col md:flex-row items-stretch justify-center gap-10 max-w-6xl mx-auto">
+    <!-- 左：SHAP 图 -->
+    <div class="flex-1 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-lg rounded-2xl p-6 flex flex-col items-center">
+      <img src={shapImg.src} alt="SHAP summary plot" class="rounded-xl object-contain w-full h-[320px]" />
+      <div class="mt-4 text-left text-gray-700 dark:text-gray-200 text-sm leading-relaxed">
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white text-center">Feature Contributions</h3>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Each point represents one patient; the x-axis shows SHAP value (feature impact).</li>
+          <li>Red = higher feature values (e.g., older age, higher BMI) → higher risk.</li>
+          <li>Blue = lower values → often protective.</li>
+          <li>Key drivers include <strong>Age</strong>, <strong>BMI</strong>, <strong>Sleep Efficiency</strong>, and <strong>Substance Use</strong>.</li>
+        </ul>
       </div>
-      <div class="flex justify-center">
-        <img src={riskImg.src} alt="SHAP feature importance"
-             class="w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60" />
+    </div>
+
+    <!-- 右：分布图 -->
+    <div class="flex-1 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-lg rounded-2xl p-6 flex flex-col items-center">
+      <img src={distImg.src} alt="Log-transformed risk distribution" class="rounded-xl object-contain w-full h-[320px]" />
+      <div class="mt-4 text-left text-gray-700 dark:text-gray-200 text-sm leading-relaxed">
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white text-center">Risk Score Distribution</h3>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Predicted cardiovascular risk scores remain right-skewed after log transformation.</li>
+          <li>30th & 70th percentiles define <strong>Low</strong>, <strong>Medium</strong>, and <strong>High</strong> risk tiers.</li>
+          <li>Interpretability helps clinicians monitor risk trajectories over time.</li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <!-- 底部按钮 -->
+  <div class="mt-16 flex justify-center">
+    <a
+      href="/projects/cvd-risk/demo"
+      class="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 text-white font-semibold rounded-full shadow-md transition-all"
+    >
+      View Interactive Demo →
+    </a>
+  </div>
+</section>
 
     <!-- Impact -->
     <section id="impact" class="text-center">
       <div class="mx-auto max-w-5xl rounded-3xl p-12 sm:p-14 text-white bg-gradient-to-r from-blue-700 via-cyan-600 to-teal-500 shadow-[0_20px_90px_-40px_rgba(0,0,0,.6)]">
         <h2 class="text-3xl md:text-4xl font-extrabold">Impact & Next Steps</h2>
         <p class="mt-4 text-lg text-blue-50 leading-relaxed">
-          This work demonstrates the potential of interpretable AI in preventive health. Next: expand datasets, validate across populations, and integrate the risk scoring system into digital health platforms.
+          The study underscores the potential of interpretable AI in preventive cardiology. Although the model was trained using single-institution data, future validation across heterogeneous populations is warranted. Further work will focus on integrating longitudinal EHR and wearable data to enable continuous, clinically actionable risk monitoring.
         </p>
         <div class="mt-8">
           <a href="/consulting" class="inline-block px-7 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:scale-[1.02] transition shadow">

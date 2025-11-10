@@ -2,39 +2,65 @@
 import Layout from "../../../layouts/PageLayout.astro";
 import CVDRiskFromWearablesV2 from "~/components/CVDRiskFromWearablesV2.tsx";
 
+// ✅ 定义 metadata
 const metadata = {
-  title: "Cardiovascular Risk — Interactive Live Demo",
+  title: "Cardiovascular Risk — Interactive Demo",
   description:
-    "Adjust lifestyle & physiological variables and see real-time cardiovascular risk estimation powered by wearable-based machine learning.",
+    "An interactive visualization demonstrating a behavior-aware cardiovascular risk model prototype, allowing users to adjust lifestyle and physiological factors in real time.",
+  canonical: "https://xiaomengxu.github.io/projects/cvd-risk-demo",
 };
 ---
 
-<Layout metadata={metadata}>
-  <main class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
-    <!-- Header -->
-    <header class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/projects/cvd-risk" class="text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition">
-          ← Back to Project
-        </a>
-        <h1 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">
-          Cardiovascular Risk — Live Interactive Demo
-        </h1>
-        <span></span>
-      </div>
-    </header>
+<Layout metadata={metadata} showHeader={false} showFooter={false}>
+  <!-- ✅ 顶部导航 -->
+  <header class="w-full border-b border-gray-200 bg-white/70 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a
+        href="/projects"
+        class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition"
+      >
+        ← Back to Projects
+      </a>
+      <h1 class="text-lg sm:text-xl font-semibold text-gray-800 text-center">
+        Cardiovascular Risk — Live Interactive Demo
+      </h1>
+      <span class="text-sm text-gray-400">Xiaomeng Xu</span>
+    </div>
+  </header>
 
-    <!-- Demo container -->
-    <section class="flex-1 w-full py-12 sm:py-16">
-      <div class="max-w-6xl mx-auto px-6">
-        <!-- ✅ New premium UI version -->
-        <CVDRiskFromWearablesV2 client:visible />
-      </div>
-    </section>
+  <!-- 🩺 使用说明区块 -->
+  <section
+    class="w-full bg-gradient-to-r from-[#f3f8ff] to-[#e9f3ff] border-y border-blue-100"
+  >
+    <div class="max-w-4xl mx-auto px-8 py-6 text-center">
+      <h2 class="text-lg font-semibold text-gray-800 mb-3">
+        How to Use This Demo
+      </h2>
+      <p
+        class="text-gray-700 leading-relaxed text-base sm:text-lg max-w-3xl mx-auto"
+      >
+        Adjust <span class="font-medium text-blue-600">lifestyle and physiological factors</span>
+        using the left panel. <br />
+        The right panel shows your <strong>risk score</strong>,
+        <strong>7-day trend</strong>, and <strong>adaptive prevention guidance</strong> that update
+        dynamically. <br />
+        <span class="italic text-gray-500">
+          This interactive visualization is for conceptual understanding only and
+          does not use real clinical models or data.
+        </span>
+      </p>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="py-8 text-center text-xs text-gray-500 dark:text-gray-400">
-      © {new Date().getFullYear()} Xiaomeng “Maggie” Xu — Cardiovascular AI Demo
-    </footer>
+  <!-- 🧠 Demo 主体 -->
+  <main class="flex-1 w-full py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <CVDRiskFromWearablesV2 client:visible />
+    </div>
   </main>
+
+  <!-- 📄 页脚 -->
+  <footer class="py-8 text-center text-xs text-gray-500">
+    © {new Date().getFullYear()} Xiaomeng “Maggie” Xu — Cardiovascular AI Demo
+  </footer>
 </Layout>
