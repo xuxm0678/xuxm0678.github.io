@@ -1,9 +1,25 @@
 ---
-import { SITE } from 'astrowind:config';
+import logo from '~/assets/images/logo.png';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+<a
+  href="/"
+  class="flex items-center gap-2 m-0 p-0"
+  style="margin-left: 0; padding-left: 0;"
 >
-  🚀 {SITE?.name}
-</span>
+  <!-- Logo 图片 -->
+  <img
+    src={logo.src}
+    alt="Maggie Xu Logo"
+    class="h-7 w-auto object-contain"
+    loading="lazy"
+  />
+
+  <!-- 文字部分 -->
+  <span
+    class="text-sm font-medium text-gray-700 tracking-wide dark:text-gray-200"
+    style="font-family: 'Inter', 'Nunito Sans', 'Helvetica Neue', sans-serif;"
+  >
+    Maggie Xu
+  </span>
+</a>
