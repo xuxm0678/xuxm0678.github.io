@@ -1,0 +1,70 @@
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, b as addAttribute, e as renderScript } from '../chunks/astro/server_BCNEJCVl.mjs';
+import 'kleur/colors';
+import { $ as $$Layout } from '../chunks/Layout_Be69vsZE.mjs';
+import { motion } from 'framer-motion';
+import maggiePortrait from '../chunks/maggie-portrait_BNhVsKkq.mjs';
+import catPortrait from '../chunks/cat-portrait_a5P0uBfo.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Consulting = createComponent(($$result, $$props, $$slots) => {
+  const PAGE_TITLE = "AI & Statistical Consulting";
+  const PAGE_DESC = "Transform complex data into insight, and insight into impact.";
+  const CTA_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSfGgR7r73_qFBOxVVrQFtgFmrsHf778n8vgeWTd4HFjUB6qeg/viewform?usp=header";
+  const CONTACT_EMAIL = "xuxm0678@gmail.com";
+  const services = [
+    { title: "Data Cleaning & Preparation", desc: "Comprehensive wrangling using R, Python, SAS, or SQL, including large-scale extraction (e.g., EHR), cleaning, and transformation into analysis-ready datasets with reproducible workflows." },
+    { title: "Statistical & Machine Learning Modeling", desc: "Guidance on model selection and implementation, from biostatistics to advanced ML, tailored to your research or business goals." },
+    { title: "Analytical Interpretation & Insights", desc: "In-depth interpretation of model outputs to uncover patterns, quantify impact, and convert findings into actionable recommendations." },
+    { title: "Data Visualization & Reporting", desc: "Publication-ready figures and interactive dashboards that clearly communicate your story to stakeholders." },
+    { title: "Data-Driven Insights & Strategy", desc: "Evidence-based recommendations to support decisions in product, operations, policy, or growth initiatives." },
+    { title: "Website & Dashboard Development", desc: "Modern, responsive sites or analytics portals to showcase data products, research findings, or performance metrics." },
+    { title: "Data Infrastructure & Automation", desc: "Optimize pipelines, automate recurring reporting, and streamline ETL to improve efficiency, scalability, and accuracy across teams." }
+  ];
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": PAGE_TITLE, "description": PAGE_DESC }, { "default": ($$result2) => renderTemplate`${maybeRenderHead()}<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-gray-200 dark:border-gray-800"> <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16"> <a href="/" class="text-lg font-semibold text-gray-800 dark:text-white hover:text-cyan-500 transition">← Back to Main Page</a> <nav class="hidden sm:flex items-center gap-6 text-gray-700 dark:text-gray-200 text-sm font-medium"> <a href="#team" class="hover:text-cyan-500 transition">Team Members</a> <a href="#services" class="hover:text-cyan-500 transition">Services</a> <a href="#process" class="hover:text-cyan-500 transition">How It Works</a> <a${addAttribute(CTA_FORM, "href")} class="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg shadow hover:scale-105 transition-transform">
+Book Free Consultation
+</a> </nav> </div> </header> <section id="hero" class="relative w-full overflow-hidden pt-24 sm:pt-32"> <canvas id="particleCanvas" class="absolute inset-0 w-full h-full"></canvas> <div class="relative mx-auto max-w-5xl px-6 pb-20 text-center z-10"> <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight overflow-visible bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
+AI & Statistical Consulting
+</h1> <p class="mt-10 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+Transform your data into insight, and insight into impact.  
+        From data cleaning and modeling to dashboards and automation, I deliver analytics that drive decisions.
+</p> </div> </section> <section id="team" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 text-center"> <div class="mx-auto max-w-4xl px-6"> <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+Team Members
+</h2> <div class="flex flex-col sm:flex-row justify-center gap-16 sm:gap-24 items-start sm:items-center">  ${renderComponent($$result2, "motion.div", motion.div, { "client:visible": true, "initial": { opacity: 0, y: 30 }, "whileInView": { opacity: 1, y: 0 }, "transition": { duration: 0.6 }, "viewport": { once: true }, "class": "flex flex-col items-center min-h-[320px]", "client:component-hydration": "visible", "client:component-path": "framer-motion", "client:component-export": "motion.div" }, { "default": ($$result3) => renderTemplate` <div class="relative w-44 h-44 rounded-full overflow-hidden shadow-lg hover:shadow-cyan-400/30 transition-all duration-700 hover:scale-105"> <img${addAttribute(maggiePortrait.src, "src")} alt="Xiaomeng Xu portrait" class="object-cover w-full h-full" loading="lazy"> </div> <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-white text-center">
+Maggie ‘Xiaomeng’ Xu
+</h3> <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
+Chief Biostat & Data Science Consultant
+</p> ` })}  ${renderComponent($$result2, "motion.div", motion.div, { "client:visible": true, "initial": { opacity: 0, y: 30 }, "whileInView": { opacity: 1, y: 0 }, "transition": { duration: 0.6, delay: 0.1 }, "viewport": { once: true }, "class": "flex flex-col items-center min-h-[320px]", "client:component-hydration": "visible", "client:component-path": "framer-motion", "client:component-export": "motion.div" }, { "default": ($$result3) => renderTemplate` <div class="relative w-44 h-44 rounded-full overflow-hidden shadow-lg hover:shadow-cyan-400/30 transition-all duration-700 hover:scale-105"> <img${addAttribute(catPortrait.src, "src")} alt="Cat assistant portrait" class="object-cover w-full h-full" loading="lazy"> </div> <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-white text-center">
+Boba
+</h3> <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
+Lifetime Emotional Support Specialist
+</p> ` })} </div> </div> </section> <section id="services" class="relative py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950"> <div class="mx-auto max-w-4xl px-6"> <div class="mb-16 text-center"> <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Services</h2> <p class="mt-3 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+End-to-end analytics solutions for researchers, startups, and organizations seeking clarity, efficiency, and impact.
+</p> </div> <div class="flex flex-col gap-10"> ${services.map((s, i) => renderTemplate`${renderComponent($$result2, "motion.div", motion.div, { "client:visible": true, "initial": { opacity: 0, y: 40 }, "whileInView": { opacity: 1, y: 0 }, "transition": { duration: 0.6, delay: i * 0.1 }, "viewport": { once: true }, "class": "rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm hover:shadow-xl hover:border-cyan-400 transition-all duration-300", "client:component-hydration": "visible", "client:component-path": "framer-motion", "client:component-export": "motion.div" }, { "default": ($$result3) => renderTemplate` <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">${s.title}</h3> <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${s.desc}</p> ` })}`)} </div> </div> </section> <section id="process" class="py-24 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-gray-950 dark:to-gray-900"> <div class="mx-auto max-w-6xl px-6 text-center"> <h2 class="text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white">How It Works</h2> <p class="mt-3 text-gray-600 dark:text-gray-300">
+A clear, collaborative workflow from request to delivery.
+</p> <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-left"> ${[
+    { step: "1", title: "Submit", text: "Share your goals, data sources, and timelines via the brief intake form." },
+    { step: "2", title: "Scope", text: "Align on problem framing, deliverables, and approach in a free 30-minute call." },
+    { step: "3", title: "Build", text: "Execute analysis or development with regular check-ins and transparent progress." },
+    { step: "4", title: "Deliver", text: "Ship final assets and documentation; iterate based on feedback and plan next steps." }
+  ].map((item, i) => renderTemplate`${renderComponent($$result2, "motion.div", motion.div, { "client:visible": true, "initial": { opacity: 0, y: 40 }, "whileInView": { opacity: 1, y: 0 }, "transition": { duration: 0.5, delay: i * 0.1 }, "viewport": { once: true }, "class": "rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm p-6 hover:shadow-lg hover:border-cyan-400 transition-all duration-300", "client:component-hydration": "visible", "client:component-path": "framer-motion", "client:component-export": "motion.div" }, { "default": ($$result3) => renderTemplate` <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 dark:border-gray-600 text-sm font-medium text-gray-600 dark:text-gray-300">${item.step}</span> <h3 class="mt-3 text-lg font-semibold text-gray-900 dark:text-white">${item.title}</h3> <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">${item.text}</p> ` })}`)} </div> </div> </section> <section id="cta" class="py-24 text-center bg-gradient-to-r from-blue-700 to-cyan-500 text-white"> <div class="mx-auto max-w-3xl px-6"> <h2 class="text-3xl sm:text-4xl font-bold">Ready to get started?</h2> <p class="mt-4 text-lg text-blue-100">
+Book a free 30-minute consultation or reach out with your project idea. I’ll reply within 24 hours.
+</p> <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4"> <a${addAttribute(CTA_FORM, "href")} class="px-6 py-3 bg-white text-blue-700 font-semibold rounded-xl shadow hover:scale-105 transition-transform">
+Book Free Consultation
+</a> <a${addAttribute(`mailto:${CONTACT_EMAIL}`, "href")} class="px-6 py-3 border border-white rounded-xl text-white hover:bg-white/20 transition">
+Email Me
+</a> </div> </div> </section> ${renderScript($$result2, "/Users/maggiexu/xuxm0678.github.io/src/pages/consulting.astro?astro&type=script&index=0&lang.ts")} ` })}`;
+}, "/Users/maggiexu/xuxm0678.github.io/src/pages/consulting.astro", void 0);
+
+const $$file = "/Users/maggiexu/xuxm0678.github.io/src/pages/consulting.astro";
+const $$url = "/consulting";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Consulting,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
