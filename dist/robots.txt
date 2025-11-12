@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://xuxm0678.github.io/sitemap-index.xml
